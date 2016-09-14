@@ -11,5 +11,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         DB::table('movies')->truncate();
         $this->call('MoviesSeeder');
+        DB::table('movie_sites')->truncate();
+        $this->call('MoviesSites');
     }
 }
