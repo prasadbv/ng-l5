@@ -11,3 +11,7 @@ Route::resource('api/todos','TodosController');
 Route::get('/todoapp',[
   'uses'=> 'TodoAppController@index'
 ]);
+Route::get('/test',[
+	'uses' => 'TestController@index',
+	'as' => 'test'
+]);

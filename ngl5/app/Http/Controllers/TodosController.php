@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Todo;
+use App\Models\Todo;
 use Illuminate\Support\Facades\Request;
 
 //use Illuminate\Http\Request;
