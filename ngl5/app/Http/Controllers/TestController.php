@@ -22,16 +22,17 @@ class TestController extends Controller
 
             foreach($movies as $movie){
 
-                $response['photos'][] = [
+                $response['movies'][] = [
                     'id' => $movie->id,
                     'user_id' => $movie->name
                 ];
             }
-            var_dump($response);
-            die();
 
         }catch (Exception $e){
             $statusCode = 400;
+        }finally{
+           var_dump($response);
+            
         }
 	}
 }
