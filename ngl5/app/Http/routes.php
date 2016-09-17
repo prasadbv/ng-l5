@@ -13,5 +13,6 @@ Route::get('/todoapp',[
 ]);
 Route::get('/test',[
 	'uses' => 'TestController@index',
-	'as' => 'test'
+	'as'   => 'test'
 ]);
+//Route::resource('api/v1','TestController');

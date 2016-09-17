@@ -9,16 +9,29 @@ use Response;
 
 class TestController extends Controller
 {
-    public function index(){
-    	//$GetMovies = new Movie;
-    	//$GetMovies->GetMovies();
-    	$movies = Movie::all();
-    	//var_dump($movies);
-    	$movies = Response::json($movies);
-    	echo "<pre>",print_r(json_decode(json_encode($movies),TRUE)),"</pre>";
-    	dd();
-    	return response($movies);
-    	 
-    	
-    }
+	public function index()
+	{
+		try{
+            $statusCode = 200;
+            $response = [
+              'movies'  => []
+            ];
+
+            $movies = Movie::all()->take(9);
+            
+
+            foreach($movies as $movie){
+
+                $response['photos'][] = [
+                    'id' => $movie->id,
+                    'user_id' => $movie->name
+                ];
+            }
+            var_dump($response);
+            die();
+
+        }catch (Exception $e){
+            $statusCode = 400;
+        }
+	}
 }
