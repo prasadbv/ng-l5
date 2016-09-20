@@ -15,9 +15,9 @@ class CreateMovieSitesTable extends Migration
       Schema::create('movie_sites',function(Blueprint $table){
         $table->increments('id');
         $table->integer('movie_id');
-        $table->string('name');
-        $table->string('logo');
-        $table->string('rating');
+        $table->string('site_name');
+        $table->string('site_logo');
+        $table->string('site_rating');
         $table->timestamps();
       });
     }
