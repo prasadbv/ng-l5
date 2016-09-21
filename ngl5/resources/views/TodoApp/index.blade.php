@@ -17,6 +17,7 @@
             <td><button class="btn btn-danger btn-xs" ng-click="deleteTodo($index)"><span class="glyphicon glyphicon-trash" ></span></button></td>
           </tr>
         </table>
+
       </div>
     </div>
   </div>

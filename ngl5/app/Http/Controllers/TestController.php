@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use App\Models\MovieSite;
 use App\Models\Movie;
@@ -13,28 +13,8 @@ class TestController extends Controller
 {
 	public function index()
 	{
-            /*$response = [];
-						$mov_site = [];
-            $movies = Movie::all()->take(5);
-						$mov_sites = MovieSite::all();
-						foreach($mov_sites as $kk=>$vv){
-							$mov_site[$vv->movie_id][] = $vv;
-						}
-						$mov_site = json_decode(json_encode($mov_site),TRUE);
-						$movies = json_decode(json_encode($movies),TRUE);
-						//echo '<pre>'; print_r($mov_site[41]); echo '</pre>'; exit;
-            foreach($movies as $key=>$movie){
-              $response[$movie['id']] = $movie;
-							@$response[$movie['id']]['sites'] = $mov_site[$movie['id']];
-            }
-						$jsondata = json_encode($response);
-						//echo '<pre>'; print_r($response); echo '</pre>'; exit;
-					 return view('test')->with('mov',$jsondata);
-					//echo '<pre>'; print_r($response); echo '</pre>'; exit;
-					//echo json_encode($mov);
-					*/
 					$mov = DB::table('movies')
-										->select('movies.id','movies.name','movies.language','movies.genre','movies.image','movies.certificate','movie_sites.id as msid','movie_sites.movies_id','movie_sites.name as msname','movie_sites.logo','movie_sites.rating')	
+										->select('movies.id','movies.name','movies.language','movies.genre','movies.image','movies.certificate','movie_sites.id as msid','movie_sites.movies_id','movie_sites.name as msname','movie_sites.logo','movie_sites.rating')
         						->join('movie_sites', function ($join) {
             					$join->on('movies.id', '=', 'movie_sites.movies_id');})
 										->get();
@@ -56,4 +36,32 @@ class TestController extends Controller
 				echo '<pre>'; print_r($data); echo '</pre>';
 
 	}
+    public function movies()
+    {
+        //'SELECT * FROM `movies` INNER JOIN `movie_sites` ON movies.id=movie_sites.movie_id'
+        $movies = DB::table('movies')
+                    ->rightJoin('movie_sites','movies.id', '=', 'movie_sites.movie_id')->get();
+        //$movies = Movie::where(DB::raw('movie_sites.movie_id'));
+
+       // dd();
+
+        $moviedata = [];
+        $site_movie = [];
+        foreach ($movies as $movie) {
+            $site_movie = [];
+            $moviedata[$movie->id]['name'] = $movie->name;
+            $moviedata[$movie->id]['language'] = $movie->language;
+            $moviedata[$movie->id]['genre'] = $movie->genre;
+            $moviedata[$movie->id]['movie_poster'] = $movie->image;
+            $moviedata[$movie->id]['certificate'] = $movie->certificate;
+            $site_movie['name'] = $movie->site_name;
+            $site_movie['site_logo'] = $movie->site_logo;
+            $site_movie['site_rating'] = $movie->site_rating;
+            $moviedata[$movie->id]['sites'][] = $site_movie;
+
+
+        }
+        echo '<pre>';print_r($moviedata); echo '</pre>';
+       // return view('test',['moviedata'=>$moviedata]);
+    }
 }
