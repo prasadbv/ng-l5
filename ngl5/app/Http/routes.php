@@ -3,6 +3,7 @@
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::resource('/mov','HomeController@movdata');
 Route::get('/',[
   'uses'=> 'HomeController@index',
   'as'=> 'home'

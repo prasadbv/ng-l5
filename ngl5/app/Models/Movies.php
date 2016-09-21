@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movies extends Model
 {
-    public function GetMovies()
+    public static function GetMovies()
     {
+
+    	//return $this->hasMany('App\MovieSite');
+
     	//protected $fillable = ['name'];
-    		
-    	//echo "hello";
 
     	return $this->belongsToMany('App\Models\Movies','movie_sites','movies_id')->get();
-    	 
+
     }
 }
