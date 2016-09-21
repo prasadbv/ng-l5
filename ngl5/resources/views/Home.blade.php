@@ -1,3 +1,9 @@
+<?php
+  foreach ($movies as $movie) {
+    echo $movie;
+  }
+?>
+
 @extends('templates.default')
 @section('content')
 <div class="movie-slider" ng-controller="indexController">

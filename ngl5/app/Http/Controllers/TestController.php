@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\Models\Movie;
+use App\Models\Movies;
 use App\Http\Requests;
 use Response;
 
@@ -72,5 +72,11 @@ class TestController extends Controller
         }
         echo '<pre>';print_r($moviedata); echo '</pre>';
        // return view('test',['moviedata'=>$moviedata]);
+    }
+    public function getDetailsFromModel()
+    {
+        $movies = new Movies;
+        $movies->GetMovies();
+        return view('home')->with('movies',$movies);
     }
 }
