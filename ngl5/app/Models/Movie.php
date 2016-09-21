@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-    public function GetMovies()
+    public static function GetMovies()
     {
-    	//protected $fillable = ['name'];
+    	//return $this->hasMany('App\MovieSite');
     }
 }
