@@ -8,23 +8,34 @@ homeapp.config(function($routeProvider) {
         templateUrl: 'http://localhost/ng-l5/ngl5/public',
         controller: 'indexController'
     });
+
     $routeProvider.when('/test',{
       templateUrl:'http://localhost/ng-l5/ngl5/public/test',
       controller:'movieController'
     });
+
 });
-homeapp.controller('indexController',function($scope,$location,$http){
-$scope.movs = 'test message';
+homeapp.controller('indexController',function($scope,$window,$http){
+$scope.movs = [];
   $scope.init = function(){
+
     $http.get('http://localhost/ng-l5/ngl5/public/mov').success(function(data,status,headers,config){
       // console.log(data);
 
     $scope.movs =data;
+   
     });
   }
   
   $scope.init();
-  
+
+  $scope.test = function(mid){
+    if(mid){ }else{  mid =1; }
+    $scope.$apply(function () {
+            $scope.mmid = mid;
+        });
+  }
+
 });
 homeapp.controller('movieController',function($scope,$location,$http){
   $scope.moviedetail = function(){
