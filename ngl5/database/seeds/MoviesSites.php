@@ -17,6 +17,7 @@ class MoviesSites extends Seeder
       foreach(range(1,50) as $index){
         DB::table('movie_sites')->insert([
           'movie_id'=>$faker->randomElement($movies),
+          'movies_id'=>$faker->numberBetween($min=0,$max=50),
           'site_name'=>$faker->name,
           'site_logo'=>$faker->imageUrl,
           'site_rating'=>$faker->numberBetween($min=1,$max=5)
