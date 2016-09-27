@@ -1,12 +1,9 @@
-<?php
-  foreach ($movies as $movie) {
-    echo $movie;
-  }
-?>
 
 @extends('templates.default')
 @section('content')
+
 <div class="movie-slider" ng-controller="indexController">
+<% movs %>
     <div class="container">
         <div class="row">
             <div class="col-md-4 movie-info">

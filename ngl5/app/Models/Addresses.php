@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MovieSites extends Model
+class Addresses extends Model
 {
-    
+	
 }

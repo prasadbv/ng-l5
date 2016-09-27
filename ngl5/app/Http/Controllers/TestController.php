@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
-use App\Models\Movies;
+use App\Models\Movie;
 use App\Models\MovieSite;
+use App\Models\User;
+use App\Models\Article;
 use App\Http\Requests;
 use Response;
-use DB;
 
 class TestController extends Controller
 {
@@ -58,16 +59,31 @@ class TestController extends Controller
             $site_movie['site_logo'] = $movie->site_logo;
             $site_movie['site_rating'] = $movie->site_rating;
             $moviedata[$movie->id]['sites'][] = $site_movie;
-
+ 
 
         }
         echo '<pre>';print_r($moviedata); echo '</pre>';
        // return view('test',['moviedata'=>$moviedata]);
     }
-    public function getDetailsFromModel()
+    public function getDetailsFromModel(MovieSite $moviesite)
     {
-        $movies = new Movies;
-        $movies->GetMovies();
-        return view('home')->with('movies',$movies);
+        $movies = $moviesite->Getmovies()->orderBy('id')->get();
+        //$movies = MovieSites::all();
+        //$movies = $movies->Getmovies;
+        var_dump($movies);
+        dd($movies);
+       // ;
+       // return view('test')->with('movies',$movies);
+    }
+    public function getArticles()
+    {
+        $articles = Article::all();
+        return view('articles')->with('articles',$articles);
+    }
+    public function getUserArticle($username)
+    {
+
+       $users = User::where('name',$username)->first();
+       return view('profile')->with('users',$users);
     }
 }
