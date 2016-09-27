@@ -24,36 +24,44 @@
 <script src="https://code.angularjs.org/1.5.8/angular-route.min.js" charset="utf-8"></script>
 <script src="{{URL::asset('js/homeapp.js')}}" charset="utf-8"></script>
 <script>
+var cid = 1;
+$(window).load(function(){
 				$(function() {
 					if ($.fn.reflect) {
 						$('#slider-coverflow .cover').reflect();	// only possible in very specific situations
 					}
 
 					$('#slider-coverflow').coverflow({
-						index:			6,
+						index:			4,
 						density:		2,
 						innerOffset:	50,
 						innerScale:		.7,
-						animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
-							if (isVisible) {
-								if (isMiddle) {
-									$(cover).css({
-										'filter':			'none',
-										'-webkit-filter':	'none'
-									});
-								} else {
-									var brightness	= 1 + Math.abs(sin),
-										contrast	= 1 - Math.abs(sin),
-										filter		= 'contrast('+contrast+') brightness('+brightness+')';
-									$(cover).css({
-										'filter':			filter,
-										'-webkit-filter':	filter
-									});
-								}
-							}
-						}
+            outerAngle: 75,
+            animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
+          		if (isVisible) {
+          			if (isMiddle) {
+          				$(cover).css({
+          					'filter':			'none',
+          					'-webkit-filter':	'none'
+          				});
+          			} else {
+          				var brightness	= 1 + Math.abs(sin),
+          					contrast	= 1 - Math.abs(sin),
+          					filter		= 'contrast('+contrast+') brightness('+brightness+')';
+          				$(cover).css({
+          					'filter':			filter,
+          					'-webkit-filter':	filter
+          				});
+          			}
+          		}
+          	},
+            select:function(event, cover, index){
+              cid = $(cover).find('img').attr('id');
+              angular.element(document.getElementById("home_id")).scope().test(cid);
+            }
 					});
 				});
+});        
 </script>
 </body>
 </html>
