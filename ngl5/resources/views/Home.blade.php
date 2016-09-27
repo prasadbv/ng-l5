@@ -1,99 +1,36 @@
 
 @extends('templates.default')
 @section('content')
-
-<div class="movie-slider" ng-controller="indexController">
-<% movs %>
+<div class="movie-slider" ng-controller="indexController" id="home_id">
     <div class="container">
         <div class="row">
             <div class="col-md-4 movie-info">
-              <div>
-                <h2>The Martin <span class="rating">A</span></h2>
-                  <div class="langs">
-                    <span>english,</span>
-                      <span>spanish,</span>
-                      <span>french,</span>
-                  </div>
+              <div >
+                <h2><%movs.data[mmid].name%> <span class="rating">A</span></h2>
+                  <div class="langs" ng-repeat="ll in movs.data[mmid].language"><span><%ll%></span></div>
                   <div class="genre">
-                    <ul class="list-inline">
-                        <li>sei-fi</li>
-                          <li>drama</li>
-                          <li>action</li>
+                    <ul class="list-inline" ng-repeat="gn in movs.data[mmid].genre">
+                        <li><%gn%></li>
                       </ul>
                   </div>
-                </div>
-                    <div class="movie-rating">
+                <div class="movie-rating">
                   <div class="movie-rating-header">
                       <h2> Ratings & Reviews </h2>
                    </div>
-               <div class="rating-item clearfix">
-                <div class="vendor-image pull-left">
-                    <img src="images/bookmyshow.png" />
-                  </div>
+               <div class="rating-item clearfix" ng-repeat="ss in movs.data[mmid].sites">
+                <div class="vendor-image pull-left"><%ss.site_name%></div>
                   <div class="vendor-rating-star pull-left">
                     <span class="glyphicon glyphicon-star"></span>
                       <span class="glyphicon glyphicon-star"></span>
                       <span class="glyphicon glyphicon-star"></span>
                       <span class="glyphicon glyphicon-star-empty"></span>
                       <span class="glyphicon glyphicon-star-empty"></span>
-
-
                   </div>
                   <div class="vendor-rating pull-left">
-                    <span>2.5/5</span>
+                    <span><%ss.site_rating%>/5</span>
                   </div>
                </div>
-                       <div class="rating-item clearfix">
-                <div class="vendor-image pull-left">
-                    <img src="images/justtickets.png" />
-                  </div>
-                  <div class="vendor-rating-star pull-left">
-                    <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
 
-
-                  </div>
-                  <div class="vendor-rating pull-left">
-                    <span>2.5/5</span>
-                  </div>
-               </div>
-                       <div class="rating-item clearfix">
-                <div class="vendor-image pull-left">
-                    <img src="images/ticketdada.png" />
-                  </div>
-                  <div class="vendor-rating-star pull-left">
-                    <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-
-
-                  </div>
-                  <div class="vendor-rating pull-left">
-                    <span>2.5/5</span>
-                  </div>
-               </div>
-                       <div class="rating-item clearfix">
-                <div class="vendor-image pull-left">
-                    <img src="images/cinemax.png" />
-                  </div>
-                  <div class="vendor-rating-star pull-left">
-                    <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-
-
-                  </div>
-                  <div class="vendor-rating pull-left">
-                    <span>2.5/5</span>
-                  </div>
-               </div>
                 <div class="rating-item clearfix our-rating">
                 <div class="vendor-image pull-left">
                     <img src="images/moviesfyi.png" />
@@ -104,15 +41,13 @@
                       <span class="our-rating-full"></span>
                       <span class="our-rating-empty"></span>
                       <span class="our-rating-empty"></span>
-
-
                   </div>
                   <div class="vendor-rating pull-left">
                     <span>3.5(Average)</span>
                   </div>
                </div>
               </div>
-
+            </div>
                 <div class="booknow-btn">
                    <button type="button" class="btn" > Book Now </button>
                 </div>
@@ -120,14 +55,9 @@
 
               <div class="col-md-8 movies-flow">
                 <div id="slider-coverflow">
-                          <img class="cover" src="images/martian2015-5.png"/>
-                          <img class="cover" src="images/martian2015-5.png"/>
-                          <img class="cover" src="images/martian2015-5.png"/>
-                           <img class="cover" src="images/martian2015-5.png"/>
-                           <img class="cover" src="images/martian2015-5.png"/>
-                          <img class="cover" src="images/martian2015-5.png"/>
-                          <img class="cover" src="images/martian2015-5.png"/>
-                           <img class="cover" src="images/martian2015-5.png"/>
+                        <div ng-repeat="img in movs.images" class="slider-slide">
+                          <img class="cover" ng-src="<% img.image %>" id="<% img.id %>" />
+                         </div>
                   </div>
               </div>
       </div>
