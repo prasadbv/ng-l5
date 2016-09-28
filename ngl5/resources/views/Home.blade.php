@@ -2,7 +2,7 @@
 @section('content')
 <div class="movie-slider" ng-controller="indexController" id="home_id">
     <div class="container">
-        <div class="row">
+        <div class="row"><%mmid%>
             <div class="col-md-4 movie-info">
               <div >
                 <h2><%movs.data[mmid].name%> <span class="rating">A</span></h2>

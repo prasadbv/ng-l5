@@ -13,12 +13,14 @@ homeapp.controller('indexController',function($scope,$window,$http){
 $scope.movs = [];
   $scope.init = function(){
     $http.post('http://localhost/ng-l5/ngl5/public/mov').success(function(data,status,headers,config){
+      var arr = Object.keys(data['data'])
+      $scope.mmid = arr[0];
       $scope.movs = data;
     });
   }
   $scope.init();
   $scope.test = function(mid){
-    if(mid){ }else{  mid =1; }
+    if(mid){ }else{  mid =39; }
     $scope.$apply(function () {
             $scope.mmid = mid;
         });

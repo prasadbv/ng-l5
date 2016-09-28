@@ -7,28 +7,29 @@ use App\Models\MovieSite;
 use App\Models\Movie;
 use App\Http\Requests;
 use Response;
-use DB;
+
 
 class TestController extends Controller
 {
 	public function index()
 	{
 					$mov = DB::table('movies')
-										->select('movies.id','movies.name','movies.language','movies.genre','movies.image','movies.certificate','movie_sites.id as msid','movie_sites.movies_id','movie_sites.name as msname','movie_sites.logo','movie_sites.rating')
         						->join('movie_sites', function ($join) {
             					$join->on('movies.id', '=', 'movie_sites.movies_id');})
 										->get();
 					$movies = json_decode(json_encode($mov),TRUE);
 						foreach( $movies as $kk=>$row ){
 							$tt = [];
+							$lang = explode(',',$row['language']);
+			        $gen = explode(',',$row['genre']);
 							$data[$row['id']]['movie_name'] = $row['name'];
-							$data[$row['id']]['movie_language'] = $row['language'];
-							$data[$row['id']]['movie_genre'] = $row['genre'];
+							$data[$row['id']]['movie_language'] = $lang;
+							$data[$row['id']]['movie_genre'] = $gen;
 							$data[$row['id']]['movie_image'] = $row['image'];
 							$data[$row['id']]['movie_certificate'] = $row['certificate'];
-							$tt['site_name'] = $row['msname'];
-							$tt['site_logo'] = $row['logo'];
-							$tt['site_rating'] = $row['rating'];
+							$tt['site_name'] = $row['site_name'];
+							$tt['site_logo'] = $row['site_logo'];
+							$tt['site_rating'] = $row['site_rating'];
 							$tt['movie_id'] = $row['movies_id'];
 							$data[$row['id']]['sites'][] = $tt;
 
