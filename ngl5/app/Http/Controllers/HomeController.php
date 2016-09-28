@@ -12,14 +12,14 @@ use Carbon\Carbon;
 class HomeController extends Controller
 {
     public function index(){
-      //printf("Right now is %s", Carbon::now()->addDay());
-      //echo date('Y-m-d h:i:s');
 
-      return view('home');
+    	$movies = new Movie;
+      	return view('home')->with('movies',$movies);
     }
 
 
     public function movdata(){
+
       $movies = DB::table('movies')
                     ->where('status',1)
                     ->orderBy('id','DESC')->take(8)->get();

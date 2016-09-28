@@ -16,5 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call('MoviesSites');
         DB::table('movie_movie_site')->truncate();
         $this->call('MoviesPivotTable');
+        DB::table('artists')->truncate();
+        $this->call('ArtistSeeder');
     }
 }

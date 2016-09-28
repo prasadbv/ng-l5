@@ -7,7 +7,7 @@
   <title>Home::Moviesfyi</title>
   <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i" rel="stylesheet">
   <link rel="stylesheet" href="{{URL::asset('css/lib/bootstrap.css')}}">
-  <link rel="stylesheet" href="{{URL::asset('css/app.css')}}" media="screen" title="no title">
+  <link rel="stylesheet" href="{{URL::asset('css/app.css')}}">
 
 </head>
 <body>
@@ -22,6 +22,7 @@
 <script src="{{URL::asset('js/lib/reflection.js')}}"></script>
 <script src="{{URL::asset('js/angular.min.js')}}" charset="utf-8"></script>
 <script src="https://code.angularjs.org/1.5.8/angular-route.min.js" charset="utf-8"></script>
+<script src="{{URL::asset('js/app.js')}}"></script>
 <script src="{{URL::asset('js/homeapp.js')}}" charset="utf-8"></script>
 <script>
 var cid = 1;

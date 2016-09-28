@@ -19,6 +19,7 @@ class CreateMoviesTable extends Migration
         $table->string('genre');
         $table->string('image');
         $table->string('certificate');
+        $table->string('artist_id');
         $table->integer('status');
         $table->integer('rating');
         $table->timestamps();
