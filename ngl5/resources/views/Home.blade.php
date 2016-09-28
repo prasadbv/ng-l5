@@ -1,3 +1,4 @@
+
 @extends('templates.default')
 @section('content')
 <div class="movie-slider" ng-controller="indexController" id="home_id">

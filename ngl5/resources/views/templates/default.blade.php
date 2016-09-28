@@ -12,7 +12,7 @@
 </head>
 <body>
   @include('templates.header')
-      @yield('content')
+   @yield('content')
 
 <script src="{{URL::asset('js/lib/jquery.min.js')}}"></script>
 <script src="{{URL::asset('js/lib/jquery-ui.min.js')}}"></script>

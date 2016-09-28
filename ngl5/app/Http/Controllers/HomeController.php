@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use DB;
 use App\Http\Controllers\Controller;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 use App\Models\MovieSite;
-use App\Models\Movie;
 use App\Http\Requests;
 use Carbon\Carbon;
 
@@ -18,12 +17,15 @@ class HomeController extends Controller
 
       return view('home');
     }
+
+
     public function movdata(){
       $movies = DB::table('movies')
                     ->where('status',1)
                     ->orderBy('id','DESC')->take(8)->get();
       //$movies = Movie::all()->where('status',1)->take(8);
       $mov_sites = MovieSite::all();
+
 
     $movies = json_decode(json_encode($movies),TRUE);
       //echo '<pre>'; print_r($movies); echo '</pre>';
