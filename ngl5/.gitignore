@@ -1,3 +1,11 @@
+app/Models/Addresses.php
+app/Models/Article.php
+app/Models/Role.php
+app/Models/User.php
+app/Http/Controllers/TestController.php
+resources/views/articles.blade.php
+resources/views/profile.blade.php
+resources/views/test.blade.php
 /vendor
 /node_modules
 /public/storage
