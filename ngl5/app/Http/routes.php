@@ -5,6 +5,9 @@ Route::get('/',[
   'uses'=> 'HomeController@index',
   'as'=> 'home'
 ]);
+Route::get('/movies','HomeController@movies');
+Route::get('/gallery','HomeController@gallery');
+
 // Route::get('/',[
 //   'uses'=> 'HomeController@getDetailsFromModel',
 //   'as'=> 'home'
@@ -18,10 +21,10 @@ Route::get('/',[
  *
  */
 
-Route::group(['prefix' => 'api/v1'], function(){
-	Route::resource('movies','MoviesController');
-	Route::resource('moviesites','MovieSiteController');
-});
+// Route::group(['prefix' => 'api/v1'], function(){
+// 	Route::resource('movies','MoviesController');
+// 	Route::resource('moviesites','MovieSiteController');
+// });
 
 /**
  *
@@ -34,15 +37,13 @@ Route::group(['prefix' => 'api/v1'], function(){
  * movies block start here
  *
  */
+
+ Route::get('/sites/{mid}','MovieSiteController@index');
+
 Route::get('/movietest',[
 	'uses' => 'MoviesController@index',
 	'as'   => 'movietest'
 ]);
-Route::get('/movies',function(){
-	$movies = new MovieSites;
-	$movies->Getmovies();
-	return $movies->Getmovies;
-});
 
 /**
  *
