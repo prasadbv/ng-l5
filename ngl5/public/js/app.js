@@ -45,6 +45,9 @@ $(function(){
         }
     }).on("mouseenter",function(){
       var _this = this;
+      var mm = $(_this).attr('data-mid'); 
+        angular.element(document.getElementById("popup-content")).scope().ratepopup(mm);
+
       $(this).popover("show");
       $(".popover").on("mouseleave", function () {
         $(_this).popover('hide');
