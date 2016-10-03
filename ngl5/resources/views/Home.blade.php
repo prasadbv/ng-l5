@@ -1,10 +1,8 @@
-
 @extends('templates.default')
 @section('content')
 <div class="movie-slider" ng-controller="indexController" id="home_id">
- <!-- <pre><% movs %></pre> -->
     <div class="container">
-        <div class="row"><%mmid%>
+        <div class="row">
             <div class="col-md-4 movie-info">
               <div >
                 <h2><%movs.data[mmid].name%> <span class="rating">A</span></h2>
@@ -68,133 +66,25 @@
 
   @include('homeviews.movielatest')
   @include('homeviews.langmovies')
-
-<div class="rating-details hidden" id="popup-content">
+<div class="rating-details hidden" id="popup-content" ng-controller="popupCtrl">
 <div class="rating-details-header text-left">
-<h2>Rating Details</h2>
+<h2>Rating Details</h2><%sites%>
 </div>
 <div class="rating-details-b">
- <div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/bookmyshow.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-</div>
-<div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/justtickets.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-</div>
-<div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/ticketdada.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-</div>
-<div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/cinemax.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-</div>
-<div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/ticketdada.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-</div>
-<div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/cinemax.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-</div>
-<div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/ticketdada.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-</div>
-<div class="popup-rating-items clearfix">
-    <div class="rating-image pull-left">
-        <img src="images/cinemax.png">
-    </div>
-    <div class="rating-image-star pull-left">
-       <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-    </div>
-    <div class="popup-rating pull-left text-right">
-        <span>3.5/5</span>
-    </div>
-    <a href="#" class="rating-details-websites"> and 12 more websites >
-    </a>
+  <div class="popup-rating-items clearfix" ng-repeat="ns in nowshows.sites[sid]">
+      <div class="rating-image pull-left"><%ns.site_name%></div>
+      <div class="rating-image-star pull-left">
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+      </div>
+      <div class="popup-rating pull-left text-right">
+          <span><% ns.site_rating %>/5</span>
+      </div>
+  </div>
+
     <div class="movie-details-footer">
          <div class="popup-rating-items clearfix">
                   <div class="rating-image pull-left">
@@ -209,11 +99,11 @@
                 </div>
                 <div class="popup-rating pull-left text-right">
                     <span>3.5/5</span>
-              </div> 
+              </div>
               <span class="popup-rating-text pull-right">(overall rating)</span>
         </div>
     </div>
-</div>
+
 </div>
 </div>
 @stop

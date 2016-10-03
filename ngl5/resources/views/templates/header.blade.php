@@ -45,9 +45,9 @@
         	<div class="container">
             	<nav class="navigation">
                 	<ul class="list-inline">
-                    	<li><a href="#"> Movies </a></li>
-                        <li><a href="#"> News </a></li>
-                        <li><a href="#"> Gallery </a></li>
+                    	<li><a href="/ng-l5/ngl5/public"> Home </a></li>
+                        <li><a href="movies"> Movies </a></li>
+                        <li><a href="gallery"> Gallery </a></li>
                         <li><a href="#"> Tickets & Show timings</a></li>
                     </ul>
                 </nav>

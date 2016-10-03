@@ -5,13 +5,13 @@
                     <div class="t-m-i-h bt-mandy">
                         <h2>now showing</h2>
                     </div>
-                    <div class="t-m-i-b" ng-init="nowshows = {{$movies->NowShowing()}}">
-                        <div class="t-m-r-i" ng-repeat="nowshow in nowshows | filter:query">
+                    <div class="t-m-i-b" ng-init="nowshows = {{$movies->NowShowing1()}}">
+                        <div class="t-m-r-i" ng-repeat="nowshow in nowshows.movies">
                             <span class="trend-movie-title"><%nowshow.name%></span>
-                            <span class="trend-movie-lang"><%nowshow.genre%></span>
-                            <div class="trend-movie-star bcg-yellow shw-pop">
+                            <span class="trend-movie-lang" ng-repeat="gn in nowshow.genre.split(',')"><%gn%></span>
+                            <div class="trend-movie-star bcg-yellow shw-pop" data-mid="<%nowshow.id%>">
                                 <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text"><%nowshow.rating%></span>
+                                <span class="rate-text" ><%nowshow.rating%></span>
                                 <span class="rate-text1">/5</span>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                     <div class="t-m-i-b" ng-init="boxshows = {{$movies->BoxOfc()}}">
                         <div class="t-m-r-i" ng-repeat="boxshow in boxshows | filter:query">
                             <span class="trend-movie-title"><%boxshow.name%></span>
-                            <span class="trend-movie-lang"><%boxshow.genre%></span>
+                            <span class="trend-movie-lang" ng-repeat="tgn in boxshow.genre.split(',')"><%tgn%></span>
                             <div class="trend-movie-star bcg-green">
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="rate-text"><%boxshow.rating%></span>
@@ -70,7 +70,7 @@
 
                             </div>
                         </div>
-                         
+
 
                     </div>
 
