@@ -8,6 +8,8 @@ Route::get('/',[
 Route::get('/movies','HomeController@movies');
 Route::get('/gallery','HomeController@gallery');
 
+
+
 // Route::get('/',[
 //   'uses'=> 'HomeController@getDetailsFromModel',
 //   'as'=> 'home'
@@ -45,18 +47,26 @@ Route::get('/movietest',[
 	'as'   => 'movietest'
 ]);
 
+
 /**
  *
  * movies block end here
  *
  */
-
+Route::get('/moviesartist',[
+	'uses' => 'HomeController@MovieArt',
+	'as'   => 'moviesartist'
+]);
 Route::get('/todoapp',[
   'uses'=> 'TodoAppController@index'
 ]);
 Route::get('/test',[
-	'uses' => 'TestController@getDetailsFromModel',
+	'uses' => 'HomeController@GetInfo',
 	'as'   => 'test'
+]);
+Route::get('/test1',[
+	'uses' => 'TestController@gms',
+	'as'   => 'test1'
 ]);
 // Route::get('/test',[
 // 	'uses' => 'TestController@getDetailsFromModel',

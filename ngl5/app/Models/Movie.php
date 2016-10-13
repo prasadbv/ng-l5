@@ -8,14 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
 	protected $table = "movies";
-    // public function GetMovies()
-    // {
-    // 	return $this->belongsTo('App\Models\MovieSites','movie_id');
-    // }
-    public function MoviesWithSites()
-    {
-    	return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site');
-    }
+
     public function NowShowing1()
     {
 			$movs = DB::table('movies')
@@ -38,7 +31,6 @@ class Movie extends Model
 			}
 				$nowshow_data['movies']  = $mv;
 				$nowshow_data['sites'] = $ms;
-					//echo '<pre>'; print_r($nowshow_data); echo '</pre>';
 			return json_encode($nowshow_data);
 
     }
@@ -52,14 +44,49 @@ class Movie extends Model
     public function ComingWeek()
     {
     	return $this->select('name','genre','created_at')->where('status','3')->take(3)->get();
-    	//return $this->select('name','genre','created_at')->where('status','3')->take(3)->groupBy(Carbon::parse('created_at')->day())->get();
-    	//return $this->select('name','genre','created_at')->where('status','3')->take(3)->groupBy(function($date) {
-        //return \Carbon\Carbon::parse($date->created_at)->format('d-M-y');
-    //})->orderBy('created_at')->get();
+    
     }
     public function ComingSoon()
     {
     	return $this->select('name','genre','rating')->where('status','4')->take(3)->get();
+    }
+
+    public function getArtistIad()
+    {
+       
+        return $this->select('artist_id');
+
+    }
+    public function MoviesWithArtist()
+    {
+    
+    }
+    public function MoviesWithSites()
+    {
+        return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id');
+    }
+
+
+    public function Gmovieandsite($status)
+    {
+
+        
+        $msites = DB::table('movies')
+           ->join('movie_sites', 'movies.id', '=', 'movie_sites.movie_id')
+->where('movies.status', '=', $status)
+           ->select('movies.id','movies.name','movies.genre','movies.rating','movies.language','movies.image','movies.certificate','movies.status','movie_sites.movie_id','movie_sites.site_name','movie_sites.site_logo','movie_sites.site_rating')
+->get();
+        return $msites;
+        
+    }
+    public function scopeAttach($query)
+    {
+        return $query->whereRaw('FIND_IN_SET(artists.id,movies.artist_id)');
+    }
+    public function GmovieandSiteandArtist()
+    {
+       return $msa = $this->hasMany('\App\Models\Artist','id');
+       // $msa = DB::table('movies')->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists')->;
     }
 
 }
