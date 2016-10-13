@@ -11,5 +11,5 @@ class MoviesController extends Controller
 		$movies = Movie::all()->lists('id');
 		return $movies;
 	}
-
+	
 }
