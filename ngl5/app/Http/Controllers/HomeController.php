@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use DB;
 use App\Http\Controllers\Controller;
@@ -13,7 +12,7 @@ class HomeController extends Controller
 {
     public function index(){
     	$movies = new Movie;
-      return view('app')->with(array('movies'=>$movies));
+      return view('app')->with('movies',$movies);
     }
     public function movdata(){
       $movies = DB::table('movies')

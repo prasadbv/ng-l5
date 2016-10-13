@@ -69,13 +69,10 @@ class TestController extends Controller
     }
     public function getDetailsFromModel(MovieSite $moviesite)
     {
-        $movies = $moviesite->Getmovies()->orderBy('id')->get();
-        //$movies = MovieSites::all();
-        //$movies = $movies->Getmovies;
-        var_dump($movies);
-        dd($movies);
-       // ;
-       // return view('test')->with('movies',$movies);
+			$msa = DB::table('movies')
+									->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists','artists.id', 'in','[5,6]')
+									->get();
+			return $msa;
     }
     public function getArticles()
     {

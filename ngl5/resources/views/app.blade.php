@@ -16,50 +16,56 @@
   <script src="{{URL::asset('js/lib/jquery.touchSwipe.min.js')}}"></script>
   <script src="{{URL::asset('js/lib/reflection.js')}}"></script>
   <script src="{{URL::asset('js/angular.min.js')}}" charset="utf-8"></script>
-  <script src="https://code.angularjs.org/1.5.8/angular-route.min.js" charset="utf-8"></script>
+  <!--<script src="https://code.angularjs.org/1.5.8/angular-route.min.js" charset="utf-8"></script>-->
   <script src="{{URL::asset('js/lib/angular-ui-router.js')}}"></script>
-  <script src="{{URL::asset('app/routes.js')}}"></script>
-  <script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
 </head>
-<body ng-controller="indexController" id="home_id">
+<body>
+  <div ng-init="nowshows={{$movies->NowShowing()}}"></div>
   @include('templates.header')
   <div ui-view></div>
-<script>
-var cid = 1;
-				$(function() {
-					if ($.fn.reflect) {
-						$('#slider-coverflow .cover').reflect();	// only possible in very specific situations
-					}
-					$('#slider-coverflow').coverflow({
-						index:			4,
-						density:		2,
-						innerOffset:	50,
-						innerScale:		.7,
-            outerAngle: 75,
-            animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
-          		if (isVisible) {
-          			if (isMiddle) {
-          				$(cover).css({
-          					'filter':			'none',
-          					'-webkit-filter':	'none'
-          				});
-          			} else {
-          				var brightness	= 1 + Math.abs(sin),
-          					contrast	= 1 - Math.abs(sin),
-          					filter		= 'contrast('+contrast+') brightness('+brightness+')';
-          				$(cover).css({
-          					'filter':			filter,
-          					'-webkit-filter':	filter
-          				});
-          			}
-          		}
-          	},
-            select:function(event, cover, index){
-              //cid = $(cover).find('img').attr('id');
-              //angular.element(document.getElementById("home_id")).scope().test(cid);
-            }
-					});
-				});
-</script>
 </body>
+<script>
+//$( window ).load(function() {
+setTimeout(function(){
+    $(function() {
+        if ($.fn.reflect) {
+          $('#slider-coverflow .cover').reflect();
+        }
+        $('#slider-coverflow').coverflow({
+          index:			4,
+          density:		2,
+          innerOffset:	50,
+          innerScale:		.7,
+          outerAngle: 75,
+          animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
+            if (isVisible) {
+              if (isMiddle) {
+                $(cover).css({
+                  'filter':			'none',
+                  '-webkit-filter':	'none'
+                });
+              } else {
+                var brightness	= 1 + Math.abs(sin),
+                  contrast	= 1 - Math.abs(sin),
+                  filter		= 'contrast('+contrast+') brightness('+brightness+')';
+                $(cover).css({
+                  'filter':			filter,
+                  '-webkit-filter':	filter
+                });
+              }
+            }
+          },
+          select:function(event, cover, index){
+            var cid = $(cover).find('img').attr('id'); //console.log(cid);
+            sholder.test(cid);
+            //$scope().test(cid);
+          }
+        });
+      });
+    },1200);
+  //});
+
+</script>
+<script src="{{URL::asset('app/routes.js')}}"></script>
+<script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
 </html>

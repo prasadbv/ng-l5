@@ -1,13 +1,13 @@
+var scopeHolder;
 var app = angular.module('main-App',['ui.router'],function($interpolateProvider){
   $interpolateProvider.startSymbol('<%');
   $interpolateProvider.endSymbol('%>');
 });
 app.config(function($urlRouterProvider,$stateProvider,$locationProvider) {
     $stateProvider.
-    state('', {
+    state('/ng-l5/ngl5/public', {
         url:'/',
-        templateUrl: 'templates/index.html',
-        controller: 'indexController'
+        templateUrl: 'templates/index.html'
     }).
     state('movies',{
       url:'/movies',
