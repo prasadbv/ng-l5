@@ -65,24 +65,33 @@ class Movie extends Model
     {
 
     }
-    public function MoviesWithSites()
-    {
-        return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id');
-    }
+    // public function MoviesWithSites()
+    // {
+    //     return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id');
+    // }
 
 
     public function Gmovieandsite($status)
     {
-
-
         $msites = DB::table('movies')
            ->join('movie_sites', 'movies.id', '=', 'movie_sites.movie_id')
-->where('movies.status', '=', $status)
+					 ->where('movies.status', '=', $status)
            ->select('movies.id','movies.name','movies.genre','movies.rating','movies.language','movies.image','movies.certificate','movies.status','movie_sites.movie_id','movie_sites.site_name','movie_sites.site_logo','movie_sites.site_rating')
-->get();
+					 ->get();
         return $msites;
-
     }
+		public function movieslist(){
+			$movies = DB::table('movies')->limit(8)->offset(0)->get();
+			return $movies;
+		}
+		public function artistlist($arids){
+				$artists = DB::table('artists')
+											->select('artist_name','artist_gender','artist_pic')
+											->whereIn('id',$arids)->get();
+				return $artists;
+				//$msa = DB::table('movies')->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists','artists.id','in','movies.artist_id')->get();
+
+		}
     public function scopeAttach($query)
     {
         return $query->whereRaw('FIND_IN_SET(artists.id,movies.artist_id)');

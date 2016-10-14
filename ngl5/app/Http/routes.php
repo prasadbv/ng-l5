@@ -9,22 +9,6 @@ Route::get('/movies','HomeController@movies');
 
 Route::get('/gallery','HomeController@gallery');
 
-
-
-// Route::get('/',[
-//   'uses'=> 'HomeController@getDetailsFromModel',
-//   'as'=> 'home'
-// ]);
-// Route::resource('api/todos','TodosController');
-
-
-/**
- *
- * group testing start here
- *
- */
-
-
 Route::get('/gallery','HomeController@gallery');
 
 Route::get('/sites/{mid}','MovieSiteController@index');
@@ -35,12 +19,6 @@ Route::get('/movietest',[
 ]);
 
 
-
-/**
- *
- * movies block end here
- *
- */
 Route::get('/moviesartist',[
 	'uses' => 'HomeController@MovieArt',
 	'as'   => 'moviesartist'
