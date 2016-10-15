@@ -7,8 +7,15 @@ app.controller('indexController', function ($scope,$window,$http) {
         $scope.mmid = arr[0];
         $scope.movs = data;
       });
+      // $scope.open = function () {
+      //             var modalInstance = $modal.open({
+      //                 templateUrl: 'templates/popup.html',
+      //             });
+      //         }
+
       sholder = $scope;
-      //coverflow();
+      showpopup();
+
     }
     $scope.test = function(mid){
       $scope.$apply(function () {
@@ -16,6 +23,9 @@ app.controller('indexController', function ($scope,$window,$http) {
           });
     }
       $scope.init();
+  $scope.showpopup1 = function(){
+    console.log("ddddd");
+  }
 });
 
 app.controller('aboutController',function($scope){

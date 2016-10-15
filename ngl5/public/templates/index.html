@@ -65,7 +65,7 @@
                         <div class="t-m-r-i nw-shw-top-box" ng-repeat="nowshow in nowshows.movies">
                             <span class="trend-movie-title"><%nowshow.name%></span>
                             <span class="trend-movie-lang" ng-repeat="la in nowshow.language.split(',')"><%la%></span>
-                            <div class="trend-movie-star info bcg-yellow shw-pop">
+                            <div class="trend-movie-star info bcg-yellow shw-pop" ng-click="showpopup1()">
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="rate-text"><%nowshow.rating%></span>
                                 <span class="rate-text1">/5</span>
