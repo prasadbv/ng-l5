@@ -34,9 +34,9 @@ class Movie extends Model
 			return json_encode($nowshow_data);
 
     }
-		public function NowShowing(){
-			return $this->select('id','name', 'genre','rating')->where('status','1')->take(7)->get();
-		}
+	public function NowShowing(){
+		return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id')->where('status','1');
+	}
     public function BoxOfc()
     {
     	return $this->select('name','genre','rating')->where('status','2')->take(7)->get();
@@ -51,16 +51,6 @@ class Movie extends Model
     	return $this->select('name','genre','rating')->where('status','4')->take(3)->get();
     }
 
-    public function getArtistIad()
-    {
-       
-        return $this->select('artist_id');
-
-    }
-    public function MoviesWithArtist()
-    {
-    
-    }
     public function MoviesWithSites()
     {
         return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id');
@@ -79,10 +69,7 @@ class Movie extends Model
         return $msites;
         
     }
-    public function scopeAttach($query)
-    {
-        return $query->whereRaw('FIND_IN_SET(artists.id,movies.artist_id)');
-    }
+
     public function GmovieandSiteandArtist()
     {
        return $msa = $this->hasMany('\App\Models\Artist','id');

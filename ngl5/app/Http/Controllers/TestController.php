@@ -43,12 +43,29 @@ class TestController extends Controller
        $users = User::where('name',$username)->first();
        return view('profile')->with('users',$users);
     }
-    public function gms(Movie $movies)
+    public function MoviesAndSites()
     {
-        $movies = $movies->get()->pluck('GmovieandSiteandArtist');
+        /**
+         *
+         * working need to move home controller
+         *
+         */
+        
+        $movies = Movie::all();
+        $msites = $movies->pluck('MoviesWithSites');
         echo $movies;
-        // var_dump($movies);
+    }
+    public function NowShow()
+    {
+        /**
+         *
+         * working need to move home controller
+         *
+         */
+        
+        $nshows = Movie::where('status','1')->take(7)->get();
+        $movies = $nshows->pluck('MoviesWithSites');
+        echo $nshows;
     }
 
 }
-;
