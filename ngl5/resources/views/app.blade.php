@@ -20,13 +20,55 @@
   <script src="{{URL::asset('js/lib/angular.min.js')}}" charset="utf-8"></script>
   <script src="{{URL::asset('js/lib/angular-css.min.js')}}" charset="utf-8"></script>
   <script src="{{URL::asset('js/lib/angular-ui-router.js')}}"></script>
-  <script src="{{URL::asset('app/routes.js')}}"></script>
-  <script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
 </head>
 <body>
-{{$movies->NowShowing()}}
   <div ng-include="'templates/header.html'"></div>
     <div ui-view></div>
   <div ng-include="'templates/footer.html'"></div>
+
+<script>
+//$( window ).load(function() {
+setTimeout(function(){
+    $(function() {
+        if ($.fn.reflect) {
+          $('#slider-coverflow .cover').reflect();
+        }
+        $('#slider-coverflow').coverflow({
+          index:			4,
+          density:		2,
+          innerOffset:	50,
+          innerScale:		.7,
+          outerAngle: 75,
+          animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
+            if (isVisible) {
+              if (isMiddle) {
+                $(cover).css({
+                  'filter':			'none',
+                  '-webkit-filter':	'none'
+                });
+              } else {
+                var brightness	= 1 + Math.abs(sin),
+                  contrast	= 1 - Math.abs(sin),
+                  filter		= 'contrast('+contrast+') brightness('+brightness+')';
+                $(cover).css({
+                  'filter':			filter,
+                  '-webkit-filter':	filter
+                });
+              }
+            }
+          },
+          select:function(event, cover, index){
+            var cid = $(cover).find('img').attr('id'); //console.log(cid);
+            sholder.test(cid);
+            //$scope().test(cid);
+          }
+        });
+      });
+    },1200);
+  //});
+
+</script>
+<script src="{{URL::asset('app/routes.js')}}"></script>
+<script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
 </body>
 </html>

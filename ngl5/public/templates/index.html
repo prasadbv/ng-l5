@@ -1,91 +1,27 @@
-
-<div class="movie-slider">
+<div class="movie-slider" ng-controller="indexController" id="hid" >
     	<div class="container">
         	<div class="row">
             	<div class="col-md-4 movie-info">
-                	<h2>The Martin <span class="rating">A</span></h2>
-                   	<div class="langs">
-                    	<span>english,</span>
-                        <span>spanish,</span>
-                        <span>french,</span>
-                    </div>
+                	<h2><%movs.data[mmid].name%> <span class="rating">A</span></h2>
+                   	<div class="langs" ng-repeat="ll in movs.data[mmid].language"><span><%ll%></span></div>
                     <div class="genre">
-                    	<ul class="list-inline">
-                        	<li>sei-fi</li>
-                            <li>drama</li>
-                            <li>action</li>
-                        </ul>
+                    	<ul class="list-inline" ng-repeat="gn in movs.data[mmid].genre"><li><%gn%></li></ul>
                     </div>
                       <div class="movie-rating">
                     <div class="movie-rating-header">
                         <h2> Ratings & Reviews </h2>
                      </div>
-                 <div class="rating-item clearfix">
-                 	<div class="vendor-image pull-left">
-                    	<img src="images/bookmyshow.png" />
-                    </div>
+                 <div class="rating-item clearfix" ng-repeat="ss in movs.data[mmid].sites">
+                 	<div class="vendor-image pull-left"><img ng-src="<%ss.site_logo%>" alt="<%ss.site_name%>"> </div>
                     <div class="vendor-rating-star pull-left">
                     	<span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
                         <span class="glyphicon glyphicon-star-empty"></span>
-
-
                     </div>
                     <div class="vendor-rating pull-left">
-                    	<span>2.5/5</span>
-                    </div>
-                 </div>
-                         <div class="rating-item clearfix">
-                 	<div class="vendor-image pull-left">
-                    	<img src="images/justtickets.png" />
-                    </div>
-                    <div class="vendor-rating-star pull-left">
-                    	<span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-
-
-                    </div>
-                    <div class="vendor-rating pull-left">
-                    	<span>2.5/5</span>
-                    </div>
-                 </div>
-                         <div class="rating-item clearfix">
-                 	<div class="vendor-image pull-left">
-                    	<img src="images/ticketdada.png" />
-                    </div>
-                    <div class="vendor-rating-star pull-left">
-                    	<span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-
-
-                    </div>
-                    <div class="vendor-rating pull-left">
-                    	<span>2.5/5</span>
-                    </div>
-                 </div>
-                         <div class="rating-item clearfix">
-                 	<div class="vendor-image pull-left">
-                    	<img src="images/cinemax.png" />
-                    </div>
-                    <div class="vendor-rating-star pull-left">
-                    	<span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-
-
-                    </div>
-                    <div class="vendor-rating pull-left">
-                    	<span>2.5/5</span>
+                    	<span><%ss.site_rating%>/5</span>
                     </div>
                  </div>
                   <div class="rating-item clearfix our-rating">
@@ -98,32 +34,21 @@
                         <span class="our-rating-full"></span>
                         <span class="our-rating-empty"></span>
                         <span class="our-rating-empty"></span>
-
-
                     </div>
                     <div class="vendor-rating pull-left">
                     	<span>3.5/5 (overall)</span>
                     </div>
                  </div>
-
-
                 </div>
-
                   <div class="booknow-btn">
                   	 <button type="button" class="btn" > Book Now </button>
                   </div>
                 </div>
-
                 <div class="col-md-8 movies-flow">
                 	<div id="slider-coverflow">
-                            <img class="cover" src="images/martian2015-5.png"/>
-                            <img class="cover" src="images/martian2015-5.png"/>
-                            <img class="cover" src="images/martian2015-5.png"/>
-                            <img class="cover" src="images/martian2015-5.png"/>
-                            <img class="cover" src="images/martian2015-5.png"/>
-                            <img class="cover" src="images/martian2015-5.png"/>
-                            <img class="cover" src="images/martian2015-5.png"/>
-                            <img class="cover" src="images/martian2015-5.png"/>
+                      <div ng-repeat="img in movs.images" class="slider-slide">
+                      <img class="cover" ng-src="<% img.image %>" id="<% img.id %>" />
+                     </div>
                     </div>
                 </div>
         </div>
@@ -137,13 +62,12 @@
                         <h2>now showing</h2>
                     </div>
                     <div class="t-m-i-b">
-                        <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">how met your mother,tha conclusion</span>
-                            <span class="trend-movie-lang">english</span>
+                        <div class="t-m-r-i nw-shw-top-box" ng-repeat="nowshow in nowshows.movies">
+                            <span class="trend-movie-title"><%nowshow.name%></span>
+                            <span class="trend-movie-lang" ng-repeat="la in nowshow.language.split(',')"><%la%></span>
                             <div class="trend-movie-star info bcg-yellow shw-pop">
-
                                 <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text">3.5</span>
+                                <span class="rate-text"><%nowshow.rating%></span>
                                 <span class="rate-text1">/5</span>
                             </div>
                             <div class="rating-votes hidden" id="popover-cont">
@@ -159,60 +83,6 @@
                                    <p class="mandy-text"> 167 votes</p></span>
                                 </div>
                             </div>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">babu bangaram</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-mandy shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">the soldier 2</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-yellow shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                               <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">the grey,die another day</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-green shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                               <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">pawan kalyan</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-mandy shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">kabali</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-yellow shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">kabali</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-mandy shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
                             </div>
                         </div>
                     </div>

@@ -13,8 +13,8 @@ use Response;
 
 class TestController extends Controller
 {
-	
-    
+
+
     public function getMovs(Movie $movies)
     {
         $movies = $movies->get()->pluck('MoviesWithArtist')->toArray();
@@ -23,10 +23,12 @@ class TestController extends Controller
 
     public function GmovieandSiteandArtist()
     {
+
         $msa = DB::table('movies')->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists',function($join){
             $join->where(DB::raw('FIND_IN_SET(artists.id , movies.artist_id)'));
         })->get();
         var_dump($msa);
+
     }
     public function getArticles()
     {

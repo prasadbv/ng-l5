@@ -6,8 +6,7 @@ app.config(function($urlRouterProvider,$stateProvider,$locationProvider) {
     $stateProvider.
     state('/ng-l5/ngl5/public', {
         url:'/',
-        templateUrl: 'templates/index.html',
-        controller: 'indexController'
+        templateUrl: 'templates/index.html'
     }).
     state('movies',{
       url:'/movies',
