@@ -9,7 +9,6 @@ app.controller('indexController', function ($scope,$window,$http) {
         $scope.mmid = arr[0];
         $scope.movs = data;
         SliderAndGallery();
-
       });
       sholder = $scope;
     }
