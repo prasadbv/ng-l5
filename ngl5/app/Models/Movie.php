@@ -60,7 +60,6 @@ class Movie extends Model
         return $this->belongsToMany('\App\Models\Artist','artist_movie','movie_id','artist_id');
     }
 
-
     public function Gmovieandsite($status)
     {
         $msites = DB::table('movies')

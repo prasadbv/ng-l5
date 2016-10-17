@@ -60,11 +60,18 @@ class TestController extends Controller
 
     
 
-    public function MoviesAndArtists()
+    public function MoviesAndSitesAndArtists()
     {
-        $a = Movie::all();
-        $b = $a->pluck('MoviesWithArtists');
-        echo $b;
+        /**
+         *
+         * working need to move home controller
+         *
+         */
+
+        $movies = Movie::all();
+        $msites = $movies->pluck('MoviesWithSites');
+        $art = $movies->pluck('MoviesWithArtists');
+        echo $movies;
     }
    
    

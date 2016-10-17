@@ -33,10 +33,7 @@ Route::get('/test',[
 	'uses' => 'TestController@NowShow',
 	'as'   => 'test'
 ]);
-Route::get('/test1',[
-	'uses' => 'TestController@MoviesAndArtists',
-	'as'   => 'test1'
-]);
+
 // Route::get('/test',[
 // 	'uses' => 'TestController@getDetailsFromModel',
 // 	'as'   => 'test'
@@ -48,4 +45,8 @@ Route::get('/article',[
 Route::get('/profile/{username}',[
 	'uses' => 'TestController@getUserArticle',
 	'as'   => 'profile'
+]);
+Route::get('/test1',[
+	'uses' => 'TestController@MoviesAndSitesAndArtists',
+	'as'   => 'test1'
 ]);

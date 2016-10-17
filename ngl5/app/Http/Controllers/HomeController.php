@@ -131,6 +131,6 @@ class HomeController extends Controller
         };
         return $movies;
     }
-     
+    
     
 }
