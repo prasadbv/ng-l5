@@ -3,18 +3,18 @@ use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Carbon\Carbon;
 class MoviesSeeder extends Seeder
-{
+{ 
 
     public function run()
     {
         $faker = Faker::create();
-        $lang  = ['english','hindi','telugu','tamil','malayalam'];
+        $lang  = ['english','hindi'];$lang2 = ['telugu','tamil','malayalam'];
         $genre = ['Action','Adventure','Animation','Biography','Comedy','Crime','Drama','Family','Fantasy','Horror','Mystery','Romance','Sci-Fi','Thriller'];
         $artist = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
         foreach(range(1,50) as $index){
           DB::table('movies')->insert([
             'name'=>$faker->name,
-            'language'=>$faker->randomElement($lang).",".$faker->randomElement($lang),
+            'language'=>$faker->randomElement($lang).",".$faker->randomElement($lang2),
             'genre'=>$faker->randomElement($genre).",".$faker->randomElement($genre),
             'image'=>$faker->imageUrl($width = 220, $height = 330),
             'certificate'=>'A',
@@ -26,4 +26,5 @@ class MoviesSeeder extends Seeder
           ]);
         };
     }
+    
 }

@@ -24,6 +24,9 @@
                     <div class="t-m-i-b" ng-init="boxshows = {{$movies->BoxOfc()}}">
                         <div class="t-m-r-i" ng-repeat="boxshow in boxshows | filter:query">
                             <span class="trend-movie-title"><%boxshow.name%></span>
+
+                            <!-- <span class="trend-movie-lang"><%boxshow.genre%></span> -->
+
                             <span class="trend-movie-lang" ng-repeat="tgn in boxshow.genre.split(',')"><%tgn%></span>
                             <div class="trend-movie-star bcg-green">
                                 <span class="glyphicon glyphicon-star"></span>
@@ -44,7 +47,7 @@
                                 <span class="date">24</span>
                             </div>
                             <span class="trend-movie-title"><%comingshow.name%></span>
-                            <span class="trend-movie-lang"><%comingshow.genre%></span>
+                            <span class="trend-movie-lang" ng-repeat="cus in comingshow.genre.split(',')"><%cus%></span>
                             <div class="trend-movie-star bcg-yellow">
                                 <span class="glyphicon glyphicon-heart"></span>
                                 <span class="rate-text">55%</span>

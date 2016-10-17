@@ -13,9 +13,9 @@ class MovieSite extends Model
     	//echo "string";
     	return $this->belongsTo('App\Models\Movie','movie_id');
     }
-    public function MoviesWithSites()
+    public function Msites()
     {
-    	return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site');
+    	return $this->belongsToMany('\App\Models\Movie','movie_movie_site','movie_id','site_id')->where('status','1');
     }
 		public function Getsites($mid){
 			return $mid;
