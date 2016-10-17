@@ -1,35 +1,6 @@
 var sholder ='';
 app.controller('indexController', function ($scope,$window,$http) {
-$(function() {
-        if ($.fn.reflect) {
-          $('#slider-coverflow .cover').reflect();
-        }
-        $('#slider-coverflow').coverflow({
-          index:      4,
-          density:    2,
-          innerOffset:  50,
-          innerScale:   .7,
-          outerAngle: 75,
-          animateStep:  function(event, cover, offset, isVisible, isMiddle, sin, cos) {
-            if (isVisible) {
-              if (isMiddle) {
-                $(cover).css({
-                  'filter':     'none',
-                  '-webkit-filter': 'none'
-                });
-              } else {
-                var brightness  = 1 + Math.abs(sin),
-                  contrast  = 1 - Math.abs(sin),
-                  filter    = 'contrast('+contrast+') brightness('+brightness+')';
-                $(cover).css({
-                  'filter':     filter,
-                  '-webkit-filter': filter
-                });
-              }
-            }
-          }
-        });
-      });
+
   $scope.movs = [];
     $scope.init = function(mmid){
 
@@ -37,6 +8,7 @@ $(function() {
         var arr = Object.keys(data['slider']['data']);
         $scope.mmid = arr[0];
         $scope.movs = data;
+        SliderAndGallery();
         
       });
       sholder = $scope;

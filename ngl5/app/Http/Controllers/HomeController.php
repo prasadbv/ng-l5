@@ -80,7 +80,7 @@ class HomeController extends Controller
     }
     public function ArtistInfo()
     {
-        $artists = Artist::select('id','artist_name','artist_pic','artist_description')->take(10)->get();
+        $artists = Artist::select('id','artist_name','artist_gal_pic','artist_description')->take(9)->get();
         return $artists;
     }
     public function Posts()

@@ -1,4 +1,5 @@
-setTimeout(function(){
+function SliderAndGallery() {
+  setTimeout(function(){
   var masonryOptions = {
         itemSelector: '.grid-item'
         // columnWidth: 80
@@ -9,25 +10,25 @@ setTimeout(function(){
           $('#slider-coverflow .cover').reflect();
         }
         $('#slider-coverflow').coverflow({
-          index:			4,
-          density:		2,
-          innerOffset:	50,
-          innerScale:		.7,
+          index:      4,
+          density:    2,
+          innerOffset:  50,
+          innerScale:   .7,
           outerAngle: 75,
-          animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
+          animateStep:  function(event, cover, offset, isVisible, isMiddle, sin, cos) {
             if (isVisible) {
               if (isMiddle) {
                 $(cover).css({
-                  'filter':			'none',
-                  '-webkit-filter':	'none'
+                  'filter':     'none',
+                  '-webkit-filter': 'none'
                 });
               } else {
-                var brightness	= 1 + Math.abs(sin),
-                  contrast	= 1 - Math.abs(sin),
-                  filter		= 'contrast('+contrast+') brightness('+brightness+')';
+                var brightness  = 1 + Math.abs(sin),
+                  contrast  = 1 - Math.abs(sin),
+                  filter    = 'contrast('+contrast+') brightness('+brightness+')';
                 $(cover).css({
-                  'filter':			filter,
-                  '-webkit-filter':	filter
+                  'filter':     filter,
+                  '-webkit-filter': filter
                 });
               }
             }
@@ -41,6 +42,7 @@ setTimeout(function(){
       });
     },0);
 
+}
     function showpopup(){
         $(".shw-pop").popover({
             html : true,

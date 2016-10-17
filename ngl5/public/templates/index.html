@@ -823,13 +823,14 @@
                     <a href="#" class="mv-news-view pull-right">view all</a>
                 </div>
                 <div class="mv-news-updates-b">
-                    <div class="col-md-4 mv-news-items bt-mandy padding-r">
+                    <div class="col-md-4 mv-news-items bt-mandy padding-r"  ng-repeat="posts in movs.Posts"> 
                         <div class="mv-news-img">
-                            <img src="images/emma.png" alt="">
+                        <img src="images/post_def.png" actual-image="<%posts.post_img%>" alt="">
+                            
                         </div>
                         <div class="mv-news-content clearfix">
-                       <h3> Lorem ipsum dolor sit amet</h3>
-                       consectetur adipisicing elit. Omnis numquam qui natus a. Sapiente dolor illum ipsa nesciunt quasi, mollitia iusto magni, consequatur rem quam temporibus necessitatibus numquam voluptatem fugit.
+                        <a href="#"><h3><%posts.title%></h3></a>
+                       <p><%posts.body%></p>
                        <a href="#" class="mv-news-read pull-right">read more>></a>
                     </div>
                         <div class="mv-news-date-comments">
@@ -843,7 +844,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-md-4 mv-news-items bt-yellow padding-r">
+                    <!-- <div class="col-md-4 mv-news-items bt-yellow padding-r">
                         <div class="mv-news-img">
                             <img src="images/emma.png" alt="">
                         </div>
@@ -943,7 +944,7 @@
                                 12 comments
                             </span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -961,7 +962,7 @@
             <div class="mv-gallery-b">
                 <div class="grid" >
                     <div class="grid-item " ng-repeat="artists in movs.ArtistInfo">
-                        <img src="images/taylor.png" actual-image="<%artists.artist_pic%>" alt="">
+                        <img src="images/gal_def.png" actual-image="<%artists.artist_gal_pic%>" alt="">
                             <div class="mv-gallery-img-content left-mandy">
                                 <h3><%artists.artist_name%></h3>
                                 <%artists.artist_description%>
