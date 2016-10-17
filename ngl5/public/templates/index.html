@@ -50,7 +50,7 @@
                   	<div id="slider-coverflow">
                         <div ng-repeat="img in movs.slider['images']" class="slider-slide">
                         <img class="cover" src="images/slider_def.png" actual-image="<% img.image %>"  alt="<%ss.site_name%>" id="<% img.id %>">
-                        
+
                        </div>
                       </div>
                   </div>
@@ -223,6 +223,39 @@
    </div>
    </div>
 </div>
+<div class="rating-details hidden" id="allmoviespopup-content">
+   <div class="rating-details-header text-left"><h2>Rating Details</h2></div>
+   <div class="rating-details-b">
+    <div class="popup-rating-items clearfix" ng-repeat="ns in movs.allmovies[amid]['movies_with_sites']">
+       <div class="rating-image pull-left"> <img src="images/site_def.png" actual-image="<%ns.site_logo%>" alt=""><!--<img src="images/bookmyshow.png">--> </div>
+       <div class="rating-image-star pull-left" >
+         <span ng-repeat="n in srating(0,ns.site_rating)">
+             <span class="<%n%>"></span></span>
+       </div>
+       <div class="popup-rating pull-left text-right">
+           <span><%ns.site_rating%>/5</span>
+       </div>
+   </div>
+   <div class="movie-details-footer">
+        <div class="popup-rating-items clearfix">
+                 <div class="rating-image pull-left">
+                       <img src="images/moviesfyi.png">
+                   </div>
+                <div class="our-rating-image-star pull-left">
+                  <span class="our-rating-full"></span>
+                   <span class="our-rating-full"></span>
+                   <span class="our-rating-full"></span>
+                   <span class="our-rating-empty"></span>
+                   <span class="our-rating-empty"></span>
+               </div>
+               <div class="popup-rating pull-left text-right">
+                   <span>3.5/5</span>
+             </div>
+             <span class="popup-rating-text pull-right">(overall rating)</span>
+       </div>
+   </div>
+   </div>
+</div>
                            <div class="t-m-r-i cmg-wk-cmg">
                                <div class="trend-calendar cmg-mv-cal">
                                   <span class="month">nov</span>
@@ -263,16 +296,16 @@
                   <div class="mv-nav">
                       <ul class="nav nav-tabs " role="tablist">
                           <li role="presentation" class="active"><div href="#all_movies" aria-controls="all_movies" role="tab" data-toggle="tab">all-movies</div></li>
-                          <li role="presentation"><div href="#telugu" aria-controls="telugu" role="tab" data-toggle="tab">telugu</div
-                          ></li>
-                          <li role="presentation"><div href="#hindi" aria-controls="hindi" role="tab" data-toggle="tab">hindi</div
-                          ></li>
-                          <li role="presentation"><div href="#english" aria-controls="english" role="tab" data-toggle="tab">english</div
-                          ></li>
-                          <li role="presentation"><div href="#tamil" aria-controls="tamil" role="tab" data-toggle="tab">tamil</div
-                          ></li>
-                          <li role="presentation"><div href="#malayalam" aria-controls="malayalam" role="tab" data-toggle="tab">malayalam</div
-                          ></li>
+                          <li role="presentation"><div href="#telugu" aria-controls="telugu" role="tab" data-toggle="tab">telugu</div>
+                          </li>
+                          <li role="presentation"><div href="#hindi" aria-controls="hindi" role="tab" data-toggle="tab">hindi</div>
+                          </li>
+                          <li role="presentation"><div href="#english" aria-controls="english" role="tab" data-toggle="tab">english</div>
+                          </li>
+                          <li role="presentation"><div href="#tamil" aria-controls="tamil" role="tab" data-toggle="tab">tamil</div>
+                          </li>
+                          <li role="presentation"><div href="#malayalam" aria-controls="malayalam" role="tab" data-toggle="tab">malayalam</div>
+                          </li>
                       </ul>
                   </div>
 
@@ -280,487 +313,30 @@
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="all_movies">
           <div class="clearfix">
-              <div class="col-md-3 book-now-img">
+              <div class="col-md-3 book-now-img" ng-repeat="all in movs.allmovies">
                   <div class="book-img-thumb">
-                     <img src="images/img.png"/>
+                     <img src="images/slider_def.png" actual-image="<% all.image %>"/>
                       <div class="mv-curve">
-                              <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
+                          <div class="mv-curve-img"> </div>
+                          <div class="mv-rate"> <span ng-mouseover="allmovies_popup($index)"><% all.rating %></span> </div>
                           <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
+                              <span><% all.name %></span>
+                              <span class="mv-name-rating"><% all.certificate %></span>
                           </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
+                          <div class="mv-lang"> <span><% all.language %></span> </div>
                           <div class="mv-det">
                               <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
+                                   <ul class="list-inline" ng-repeat="ag in all.genre.split(',')">
+                                      <li><% ag %></li>
                                   </ul>
                               </div>
                               <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
+                                  <span class="mv-artists" ng-repeat="ar in all.movies_with_artists">
+                                      <span class="mv-artist-img"> <img src="images/img1.jpg" actual-image="<% ar.artist_pic %>" alt=""> </span>
+                                      <span class="mv-artist-name"><% ar.artist_name %></span>
                                   </span>
                               </div>
                           </div>
-
-                      </div>
-                      <div class="book-nw-btn">
-                         book now
-                         <span class="glyphicon glyphicon-play play-btn">
-                         </span>
-                      </div>
-                  </div>
-
-              </div>
-             <div class="col-md-3 book-now-img">
-                  <div class="book-img-thumb">
-                     <img src="images/img.png"/>
-                      <div class="mv-curve">
-                          <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
-                          <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
-                          </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
-                          <div class="mv-det">
-                              <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
-                                  </ul>
-                              </div>
-                              <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                              </div>
-                          </div>
-
-                      </div>
-                      <div class="book-nw-btn">
-                         book now
-                         <span class="glyphicon glyphicon-play play-btn">
-                         </span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 book-now-img">
-                  <div class="book-img-thumb">
-                     <img src="images/img.png"/>
-                      <div class="mv-curve">
-                          <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
-                          <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
-                          </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
-                          <div class="mv-det">
-                              <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
-                                  </ul>
-                              </div>
-                              <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                              </div>
-                          </div>
-
-                      </div>
-                      <div class="book-nw-btn">
-                         book now
-                         <span class="glyphicon glyphicon-play play-btn">
-                         </span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 book-now-img">
-                  <div class="book-img-thumb">
-                     <img src="images/img.png"/>
-                      <div class="mv-curve">
-                          <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
-                          <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
-                          </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
-                          <div class="mv-det">
-                              <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
-                                  </ul>
-                              </div>
-                              <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                              </div>
-                          </div>
-
-                      </div>
-                      <div class="book-nw-btn">
-                         book now
-                         <span class="glyphicon glyphicon-play play-btn">
-                         </span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 book-now-img">
-                  <div class="book-img-thumb">
-                     <img src="images/img.png"/>
-                      <div class="mv-curve">
-                          <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
-                          <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
-                          </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
-                          <div class="mv-det">
-                              <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
-                                  </ul>
-                              </div>
-                              <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                              </div>
-                          </div>
-
-                      </div>
-                      <div class="book-nw-btn">
-                         book now
-                         <span class="glyphicon glyphicon-play play-btn">
-                         </span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 book-now-img">
-                  <div class="book-img-thumb">
-                     <img src="images/img.png"/>
-                      <div class="mv-curve">
-                          <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
-                          <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
-                          </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
-                          <div class="mv-det">
-                              <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
-                                  </ul>
-                              </div>
-                              <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                              </div>
-                          </div>
-
-                      </div>
-                      <div class="book-nw-btn">
-                         book now
-                         <span class="glyphicon glyphicon-play play-btn">
-                         </span>
-                      </div>
-                  </div>
-              </div>
-             <div class="col-md-3 book-now-img">
-                  <div class="book-img-thumb">
-                     <img src="images/img.png"/>
-                      <div class="mv-curve">
-                          <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
-                          <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
-                          </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
-                          <div class="mv-det">
-                              <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
-                                  </ul>
-                              </div>
-                              <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                              </div>
-                          </div>
-
-                      </div>
-                      <div class="book-nw-btn">
-                         book now
-                         <span class="glyphicon glyphicon-play play-btn">
-                         </span>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-3 book-now-img">
-                  <div class="book-img-thumb">
-                     <img src="images/img.png"/>
-                      <div class="mv-curve">
-                          <div class="mv-curve-img">
-                              </div>
-                          <div class="mv-rate">
-                              <span>3.5</span>
-                          </div>
-                          <div class="mv-name">
-                              <span>the assassin</span>
-                              <span class="mv-name-rating">A</span>
-
-                          </div>
-                          <div class="mv-lang">
-                              <span>hindi</span>
-                          </div>
-                          <div class="mv-det">
-                              <div class="mv-genre">
-                                   <ul class="list-inline">
-                                      <li>sei-fi</li>
-                                      <li>drama</li>
-                                      <li>action</li>
-                                  </ul>
-                              </div>
-                              <div class="mv-act-thumb">
-                                  <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                                   <span class="mv-artists">
-                                      <span class="mv-artist-img">
-                                          <img src="images/img1.jpg" alt="">
-                                      </span>
-                                      <span class="mv-artist-name">magan fox</span>
-                                  </span>
-                              </div>
-                          </div>
-
                       </div>
                       <div class="book-nw-btn">
                          book now
@@ -823,13 +399,14 @@
                     <a href="#" class="mv-news-view pull-right">view all</a>
                 </div>
                 <div class="mv-news-updates-b">
-                    <div class="col-md-4 mv-news-items bt-mandy padding-r">
+                    <div class="col-md-4 mv-news-items bt-mandy padding-r"  ng-repeat="posts in movs.Posts">
                         <div class="mv-news-img">
-                            <img src="images/emma.png" alt="">
+                        <img src="images/post_def.png" actual-image="<%posts.post_img%>" alt="">
+
                         </div>
                         <div class="mv-news-content clearfix">
-                       <h3> Lorem ipsum dolor sit amet</h3>
-                       consectetur adipisicing elit. Omnis numquam qui natus a. Sapiente dolor illum ipsa nesciunt quasi, mollitia iusto magni, consequatur rem quam temporibus necessitatibus numquam voluptatem fugit.
+                        <a href="#"><h3><%posts.title%></h3></a>
+                       <p><%posts.body%></p>
                        <a href="#" class="mv-news-read pull-right">read more>></a>
                     </div>
                         <div class="mv-news-date-comments">
@@ -843,7 +420,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="col-md-4 mv-news-items bt-yellow padding-r">
+                    <!-- <div class="col-md-4 mv-news-items bt-yellow padding-r">
                         <div class="mv-news-img">
                             <img src="images/emma.png" alt="">
                         </div>
@@ -943,7 +520,7 @@
                                 12 comments
                             </span>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -961,7 +538,7 @@
             <div class="mv-gallery-b">
                 <div class="grid" >
                     <div class="grid-item " ng-repeat="artists in movs.ArtistInfo">
-                        <img src="images/taylor.png" actual-image="<%artists.artist_pic%>" alt="">
+                        <img src="images/gal_def.png" actual-image="<%artists.artist_gal_pic%>" alt="">
                             <div class="mv-gallery-img-content left-mandy">
                                 <h3><%artists.artist_name%></h3>
                                 <%artists.artist_description%>

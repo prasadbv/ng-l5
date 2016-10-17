@@ -601,6 +601,10 @@ a.mv-news-view,a.mv-gallery-view{
     font-size: 16px;
     text-transform: uppercase;
 }
+.mv-news-content p{
+    height: 120px;
+    overflow:hidden;
+}
 .mv-news-date-comments>span {
     width: 30%;
     display: inline-block;
@@ -615,7 +619,7 @@ a.mv-news-view,a.mv-gallery-view{
 }
 .grid {
     padding: 2px;
-    height: 372px !important;
+    /*height: 372px !important;*/
 }
 .mv-gallery-img-content {
     position: absolute;
