@@ -62,8 +62,7 @@ class HomeController extends Controller
        $data['CommingSoon'] = $this->CommingSoon($moviesSites);
        $data['ArtistInfo'] = $this->ArtistInfo();
        $data['Posts'] = $this->Posts();
-       //$data['CommingSoon'] = $this->CommingSoon($moviesSites);
-       //$data['allmovies'] = $this->allmovies($moviesSites);
+       $data['allmovies'] = $this->MoviesAndSitesAndArtists();
        return $data;
     }
     public function NowShow()
@@ -78,6 +77,26 @@ class HomeController extends Controller
         $movies = $nshows->pluck('MoviesWithSites');
         return $nshows;
     }
+    public function MoviesAndSitesAndArtists()
+    {
+     $movies = Movie::all()->take(8);
+     $msites = $movies->pluck('MoviesWithSites');
+     $art = $movies->pluck('MoviesWithArtists');
+     return $movies;
+   }
+    public function allmovies(Movie $moviesSites){
+       $movies =  json_decode(json_encode($moviesSites->movieslist()),TRUE);
+       $mov_artists = [];
+       foreach($movies as $k=>$v){
+         $mov_artists[$v['id']] = $v;
+         $arids = explode(',',$v['artist_id']);
+         $artists =  json_decode(json_encode($moviesSites->artistlist($arids)),TRUE);
+         $mov_artists[$v['id']]['artists'] = $artists;
+       }
+       return $mov_artists;
+	  }
+
+
     public function ArtistInfo()
     {
         $artists = Artist::select('id','artist_name','artist_gal_pic','artist_description')->take(9)->get();
@@ -85,7 +104,6 @@ class HomeController extends Controller
     }
     public function Posts()
     {
-        
         $posts = Post::orderBy('id','desc')->take(6)->get();
         return $posts;
     }
@@ -131,6 +149,4 @@ class HomeController extends Controller
         };
         return $movies;
     }
-    
-    
-}
+  }

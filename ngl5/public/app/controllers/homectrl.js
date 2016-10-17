@@ -9,7 +9,6 @@ app.controller('indexController', function ($scope,$window,$http) {
         $scope.mmid = arr[0];
         $scope.movs = data;
         SliderAndGallery();
-        
       });
       sholder = $scope;
     }
@@ -26,6 +25,10 @@ app.controller('indexController', function ($scope,$window,$http) {
     $scope.topboxpopup = function(tmvid){
       $scope.tmindex = tmvid;
       topbox_showpopup();
+    }
+    $scope.allmovies_popup = function(amid){
+      $scope.amid = amid;
+      allmovies_showpopup();
     }
     $scope.srating = function(min, max){
     var tt = [];var txt = '';

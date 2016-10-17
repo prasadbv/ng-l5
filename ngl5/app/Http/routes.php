@@ -34,6 +34,7 @@ Route::get('/test',[
 	'as'   => 'test'
 ]);
 
+
 // Route::get('/test',[
 // 	'uses' => 'TestController@getDetailsFromModel',
 // 	'as'   => 'test'
