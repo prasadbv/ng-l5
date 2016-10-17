@@ -119,7 +119,8 @@ app.controller('indexController', function ($scope,$window,$http) {
              */
   $scope.movs = [];
     $scope.init = function(mmid){
-      $http.post('http://ng-l5.app/mov').success(function(data,status,headers,config){
+      console.log(appUrl);
+      $http.post(appUrl+'/mov').success(function(data,status,headers,config){
         var arr = Object.keys(data['data'])
         $scope.mmid = arr[0];
         $scope.movs = data;

@@ -22,6 +22,10 @@
   <script src="{{URL::asset('js/lib/angular-ui-router.js')}}"></script>
 </head>
 <body>
+<script>
+  var appUrl = "{{URL::to('/')}}";
+</script>
+<input type="hidden" name="" value="}" >
   <div ng-include="'templates/header.html'"></div>
     <div ui-view></div>
   <div ng-include="'templates/footer.html'"></div>
