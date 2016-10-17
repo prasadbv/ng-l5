@@ -1,2 +1,1 @@
-web: ngl5/vendor/bin/heroku-php-apache2 ngl5/public/
-
+web: vendor/bin/heroku-php-apache2 ngl5/public/
