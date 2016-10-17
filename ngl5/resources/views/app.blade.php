@@ -16,16 +16,16 @@
   <script src="{{URL::asset('js/lib/jquery.touchSwipe.min.js')}}"></script>
   <script src="{{URL::asset('js/lib/reflection.js')}}"></script>
   <script src="{{URL::asset('js/angular.min.js')}}" charset="utf-8"></script>
-  <script src="{{URL::asset('js/ui-bootstrap-tpls-0.14.3.min.js')}}" charset="utf-8"></script>
+  <script src="{{URL::asset('js/lib/angular-css.min.js')}}" charset="utf-8"></script>
+  <!--<script src="https://code.angularjs.org/1.5.8/angular-route.min.js" charset="utf-8"></script>-->
   <script src="{{URL::asset('js/lib/angular-ui-router.js')}}"></script>
-
+  <script src="{{URL::asset('app/routes.js')}}"></script>
+  <script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
+  <script src="{{URL::asset('js/custom.js')}}"></script>
 </head>
 <body>
-  <div ng-init="nowshows={{$movies->NowShowing()}}"></div>
-  @include('templates.header')
+  <div ng-include="'templates/header.html'"></div>
   <div ui-view></div>
+  <div ng-include="'templates/footer.html'"></div>
 </body>
-<script src="{{URL::asset('app/routes.js')}}"></script>
-<script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
-<script src="{{URL::asset('js/custom.js')}}"></script>
 </html>

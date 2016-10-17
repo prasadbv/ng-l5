@@ -1,5 +1,5 @@
 var scopeHolder;
-var app = angular.module('main-App',['ui.router','ui.bootstrap'],function($interpolateProvider){
+var app = angular.module('main-App',['ui.router','angularCSS'],function($interpolateProvider){
   $interpolateProvider.startSymbol('<%');
   $interpolateProvider.endSymbol('%>');
 });

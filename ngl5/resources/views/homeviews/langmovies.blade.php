@@ -1,3 +1,4 @@
+{{$movies->MoviesWithArtist()}}
  <div class="mv-lang-tab">
         <div class="container">
             <div class="mv-lang-hold">

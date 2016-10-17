@@ -59,3 +59,26 @@ setTimeout(function(){
             }, 100);
     });
   }
+  function topbox_showpopup(){
+      $(".tshw-pop").popover({
+          html : true,
+          trigger:'click',
+          placement:'right',
+          content: function() { 
+            return $("#topboxpopup-content").html();
+          }
+      }).on("mouseenter",function(){
+        var _this = this;
+        $(this).popover("show");
+        $(".popover").on("mouseleave", function () {
+          $(_this).popover('hide');
+      });
+      }).on("mouseleave", function () {
+          var _this = this;
+          setTimeout(function () {
+              if (!$(".popover:hover").length) {
+                  $(_this).popover("hide")
+              }
+          }, 100);
+  });
+}

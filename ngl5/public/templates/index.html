@@ -1,966 +1,819 @@
-<div class="movie-slider" ng-controller="indexController" id="hid" >
-    	<div class="container">
-        	<div class="row">
-            	<div class="col-md-4 movie-info">
-                	<h2><%movs.data[mmid].name%> <span class="rating">A</span></h2>
-                   	<div class="langs" ng-repeat="ll in movs.data[mmid].language"><span><%ll%></span></div>
-                    <div class="genre">
-                    	<ul class="list-inline" ng-repeat="gn in movs.data[mmid].genre"><li><%gn%></li></ul>
-                    </div>
-                      <div class="movie-rating">
-                    <div class="movie-rating-header">
-                        <h2> Ratings & Reviews </h2>
-                     </div>
-                 <div class="rating-item clearfix" ng-repeat="ss in movs.data[mmid].sites">
-                 	<div class="vendor-image pull-left"><img ng-src="<%ss.site_logo%>" alt="<%ss.site_name%>"> </div>
-                    <div class="vendor-rating-star pull-left">
-                    	<span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                    </div>
-                    <div class="vendor-rating pull-left">
-                    	<span><%ss.site_rating%>/5</span>
-                    </div>
-                 </div>
-                  <div class="rating-item clearfix our-rating">
-                 	<div class="vendor-image pull-left">
-                    	<img src="images/moviesfyi.png" />
-                    </div>
-                    <div class="vendor-rating-star pull-left">
-                    	<span class="our-rating-full"></span>
-                        <span class="our-rating-full"></span>
-                        <span class="our-rating-full"></span>
-                        <span class="our-rating-empty"></span>
-                        <span class="our-rating-empty"></span>
-                    </div>
-                    <div class="vendor-rating pull-left">
-                    	<span>3.5/5 (overall)</span>
-                    </div>
-                 </div>
-                </div>
-                  <div class="booknow-btn">
-                  	 <button type="button" class="btn" > Book Now </button>
+<div ng-controller="indexController" id="hid">
+  <div class="movie-slider">
+      	<div class="container">
+          	<div class="row">
+              	<div class="col-md-4 movie-info">
+                  	<h2><%movs.slider['data'][mmid].name%> <span class="rating">A</span></h2>
+                     	<div class="langs" ng-repeat="ll in movs.slider['data'][mmid].language"><span><%ll%></span></div>
+                      <div class="genre">
+                      	<ul class="list-inline" ng-repeat="gn in movs.slider['data'][mmid].genre"><li><%gn%></li></ul>
+                      </div>
+                        <div class="movie-rating">
+                      <div class="movie-rating-header">
+                          <h2> Ratings & Reviews </h2>
+                       </div>
+                   <div class="rating-item clearfix" ng-repeat="ss in movs.slider['data'][mmid].sites">
+                   	<div class="vendor-image pull-left"><img ng-src="<%ss.site_logo%>" alt="<%ss.site_name%>"> </div>
+                      <div class="vendor-rating-star pull-left">
+                      	<span class="glyphicon glyphicon-star"></span>
+                          <span class="glyphicon glyphicon-star"></span>
+                          <span class="glyphicon glyphicon-star"></span>
+                          <span class="glyphicon glyphicon-star-empty"></span>
+                          <span class="glyphicon glyphicon-star-empty"></span>
+                      </div>
+                      <div class="vendor-rating pull-left">
+                      	<span><%ss.site_rating%>/5</span>
+                      </div>
+                   </div>
+                    <div class="rating-item clearfix our-rating">
+                   	<div class="vendor-image pull-left">
+                      	<img src="images/moviesfyi.png" />
+                      </div>
+                      <div class="vendor-rating-star pull-left">
+                      	<span class="our-rating-full"></span>
+                          <span class="our-rating-full"></span>
+                          <span class="our-rating-full"></span>
+                          <span class="our-rating-empty"></span>
+                          <span class="our-rating-empty"></span>
+                      </div>
+                      <div class="vendor-rating pull-left">
+                      	<span>3.5/5 (overall)</span>
+                      </div>
+                   </div>
                   </div>
-                </div>
-                <div class="col-md-8 movies-flow">
-                	<div id="slider-coverflow">
-                      <div ng-repeat="img in movs.images" class="slider-slide">
-                      <img class="cover" ng-src="<% img.image %>" id="<% img.id %>" />
-                     </div>
+                    <div class="booknow-btn">
+                    	 <button type="button" class="btn" > Book Now </button>
                     </div>
-                </div>
+                  </div>
+                  <div class="col-md-8 movies-flow">
+                  	<div id="slider-coverflow">
+                        <div ng-repeat="img in movs.slider['images']" class="slider-slide">
+                        <img class="cover" ng-src="<% img.image %>" id="<% img.id %>" />
+                       </div>
+                      </div>
+                  </div>
+          </div>
+      </div>
+      </div>
+      <div class="trending-movies">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-4 trend-movie-item padding-rr">
+                      <div class="t-m-i-h bt-mandy">
+                          <h2>now showing</h2>
+                      </div>
+                      <div class="t-m-i-b">
+                          <div class="t-m-r-i nw-shw-top-box" ng-repeat="nowshow in movs.NowShowingMovies">
+                              <span class="trend-movie-title"><%nowshow.name%></span>
+                              <span class="trend-movie-lang" ng-repeat="la in nowshow.language.split(',')"><% la %></span>
+                              <div class="trend-movie-star info bcg-yellow shw-pop" ng-mouseover="nowshowpopup($index,'NowShowingMovies')">
+                                  <span class="glyphicon glyphicon-star"></span>
+                                  <span class="rate-text"><%nowshow.rating%></span>
+                                  <span class="rate-text1">/5</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4 trend-movie-item">
+                      <div class="t-m-i-h bt-yellow">
+                          <h2>top box-office</h2>
+                      </div>
+                      <div class="t-m-i-b">
+                          <div class="t-m-r-i nw-shw-top-box" ng-repeat="topbox in movs.TopBoxOffice">
+                              <span class="trend-movie-title"><% topbox.name %></span>
+                              <span class="trend-movie-lang" ng-repeat="la in topbox.language.split(',')"><% la %></span>
+                              <div class="trend-movie-star bcg-green tshw-pop" ng-mouseover="topboxpopup($index)">
+                                  <span class="glyphicon glyphicon-star"></span>
+                                  <span class="rate-text"><% topbox.rating %></span>
+                                  <span class="rate-text1">/5</span>
+                              </div>
+                          </div>
+                      </div>
+                   </div>
+                  <div class="col-md-4 trend-movie-item padding-lr">
+                      <div class="t-m-i-h bt-green">
+                          <h2>coming this week</h2>
+                      </div>
+                      <div class="t-m-i-b date-rating">
+                          <div class="t-m-r-i cmg-wk-cmg">
+                              <div class="trend-calendar cmg-wk-cal">
+                                  <span class="day">Mon</span>
+                                  <span class="date">24</span>
+                              </div>
+                              <span class="trend-movie-title">how met your mother,tha conclusion</span>
+                              <span class="trend-movie-lang">english</span>
+                              <div class="trend-movie-star bcg-yellow cmg-pop">
+                                  <span class="glyphicon glyphicon-heart"></span>
+                                  <span class="rate-text">55%</span>
+
+                              </div>
+                          </div>
+                           <div class="t-m-r-i cmg-wk-cmg">
+                               <div class="trend-calendar cmg-wk-cal">
+                                  <span class="day">Mon</span>
+                                  <span class="date">24</span>
+                              </div>
+                              <span class="trend-movie-title">babu bangaram</span>
+                              <span class="trend-movie-lang">telugu</span>
+                              <div class="trend-movie-star bcg-green cmg-pop">
+                                  <span class="glyphicon glyphicon-heart"></span>
+                                 <span class="rate-text">85%</span>
+
+                              </div>
+                          </div>
+                           <div class="t-m-r-i cmg-wk-cmg">
+                               <div class="trend-calendar cmg-wk-cal">
+                                  <span class="day">Mon</span>
+                                  <span class="date">24</span>
+                              </div>
+                              <span class="trend-movie-title">the soldier 2</span>
+                              <span class="trend-movie-lang">english</span>
+                              <div class="trend-movie-star bcg-yellow cmg-pop">
+                                  <span class="glyphicon glyphicon-heart"></span>
+                                 <span class="rate-text">95%</span>
+
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="t-m-i-h cmg-mv bt-grey">
+                          <h2>coming soon</h2>
+                      </div>
+                      <div class="t-m-i-b date-rating">
+
+                          <div class="t-m-r-i cmg-wk-cmg">
+                               <div class="trend-calendar cmg-mv-cal">
+                                  <span class="month">oct</span>
+                                  <span class="date">24</span>
+                              </div>
+                              <span class="trend-movie-title">how met your mother,tha conclusion</span>
+                              <span class="trend-movie-lang">english</span>
+                              <div class="trend-movie-star bcg-green cmg-pop">
+                                  <span class="glyphicon glyphicon-heart"></span>
+                                  <span class="rate-text">55%</span>
+
+                              </div>
+                          </div>
+<div class="rating-details hidden" id="popup-content">
+    <div class="rating-details-header text-left"><h2>Rating Details</h2></div>
+    <div class="rating-details-b">
+     <div class="popup-rating-items clearfix" ng-repeat="ns in movs.NowShowingMovies[mind]['movies_with_sites']">
+        <div class="rating-image pull-left"><%ns.site_name%> <!--<img src="images/bookmyshow.png">--> </div>
+        <div class="rating-image-star pull-left" >
+          <span ng-repeat="n in srating(0,ns.site_rating)">
+              <span class="<%n%>"></span></span>
+        </div>
+        <div class="popup-rating pull-left text-right">
+            <span><%ns.site_rating%>/5</span>
         </div>
     </div>
-    </div>
-    <div class="trending-movies">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 trend-movie-item padding-rr">
-                    <div class="t-m-i-h bt-mandy">
-                        <h2>now showing</h2>
+    <div class="movie-details-footer">
+         <div class="popup-rating-items clearfix">
+                  <div class="rating-image pull-left">
+                        <img src="images/moviesfyi.png">
                     </div>
-                    <div class="t-m-i-b">
-                        <div class="t-m-r-i nw-shw-top-box" ng-repeat="nowshow in nowshows.movies">
-                            <span class="trend-movie-title"><%nowshow.name%></span>
-                            <span class="trend-movie-lang" ng-repeat="la in nowshow.language.split(',')"><%la%></span>
-                            <div class="trend-movie-star info bcg-yellow shw-pop" ng-click="showpopup1()">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text"><%nowshow.rating%></span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                            <div class="rating-votes hidden" id="popover-cont">
-                                <div class="rating-popup-icons clearfix">
-                                <div class="rating-votes-popup">
-                                    <span class="glyphicon glyphicon-heart"></span>
-                                    <span>55%</span>
-                                </div>
-                                <div class="rating-votes-icons">
-                                    <span><i class="fa fa-thumbs-o-up color-white green" aria-hidden="true"></i>
-                                    <p class="green-text">1678 votes</p></span>
-                                    <span><i class="fa fa-thumbs-o-down color-white mandy" aria-hidden="true"></i>
-                                   <p class="mandy-text"> 167 votes</p></span>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                 <div class="our-rating-image-star pull-left">
+                   <span class="our-rating-full"></span>
+                    <span class="our-rating-full"></span>
+                    <span class="our-rating-full"></span>
+                    <span class="our-rating-empty"></span>
+                    <span class="our-rating-empty"></span>
                 </div>
-                <div class="col-md-4 trend-movie-item">
-                    <div class="t-m-i-h bt-yellow">
-                        <h2>top box-office</h2>
-                    </div>
-                    <div class="t-m-i-b">
-                        <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">how met your mother,tha conclusion</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-green shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">babu bangaram</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-mandy shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                               <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">the soldier 2</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-green shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                               <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">the grey,die another day</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-yellow shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">pawan kalyan</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-mandy shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                               <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">kabali</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-green shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                               <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i nw-shw-top-box">
-                            <span class="trend-movie-title">kabali</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-yellow shw-pop">
-                                <span class="glyphicon glyphicon-star"></span>
-                               <span class="rate-text">3.5</span>
-                                <span class="rate-text1">/5</span>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-                <div class="col-md-4 trend-movie-item padding-lr">
-                    <div class="t-m-i-h bt-green">
-                        <h2>coming this week</h2>
-                    </div>
-                    <div class="t-m-i-b date-rating">
-                        <div class="t-m-r-i cmg-wk-cmg">
-                            <div class="trend-calendar cmg-wk-cal">
-                                <span class="day">Mon</span>
-                                <span class="date">24</span>
-                            </div>
-                            <span class="trend-movie-title">how met your mother,tha conclusion</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-yellow cmg-pop">
-                                <span class="glyphicon glyphicon-heart"></span>
-                                <span class="rate-text">55%</span>
-
-                            </div>
-                        </div>
-                         <div class="t-m-r-i cmg-wk-cmg">
-                             <div class="trend-calendar cmg-wk-cal">
-                                <span class="day">Mon</span>
-                                <span class="date">24</span>
-                            </div>
-                            <span class="trend-movie-title">babu bangaram</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-green cmg-pop">
-                                <span class="glyphicon glyphicon-heart"></span>
-                               <span class="rate-text">85%</span>
-
-                            </div>
-                        </div>
-                         <div class="t-m-r-i cmg-wk-cmg">
-                             <div class="trend-calendar cmg-wk-cal">
-                                <span class="day">Mon</span>
-                                <span class="date">24</span>
-                            </div>
-                            <span class="trend-movie-title">the soldier 2</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-yellow cmg-pop">
-                                <span class="glyphicon glyphicon-heart"></span>
-                               <span class="rate-text">95%</span>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="t-m-i-h cmg-mv bt-grey">
-                        <h2>coming soon</h2>
-                    </div>
-                    <div class="t-m-i-b date-rating">
-
-                        <div class="t-m-r-i cmg-wk-cmg">
-                             <div class="trend-calendar cmg-mv-cal">
-                                <span class="month">oct</span>
-                                <span class="date">24</span>
-                            </div>
-                            <span class="trend-movie-title">how met your mother,tha conclusion</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-green cmg-pop">
-                                <span class="glyphicon glyphicon-heart"></span>
-                                <span class="rate-text">55%</span>
-
-                            </div>
-                        </div>
-                      <div class="rating-details hidden" id="popup-content">
-                            <div class="rating-details-header text-left">
-                            <h2>Rating Details</h2>
-                            </div>
-                            <div class="rating-details-b">
-                             <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/bookmyshow.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                            </div>
-                            <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/justtickets.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                            </div>
-                            <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/ticketdada.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                            </div>
-                            <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/cinemax.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                            </div>
-                            <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/ticketdada.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                            </div>
-                            <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/cinemax.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                            </div>
-                            <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/ticketdada.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                            </div>
-                            <div class="popup-rating-items clearfix">
-                                <div class="rating-image pull-left">
-                                    <img src="images/cinemax.png">
-                                </div>
-                                <div class="rating-image-star pull-left">
-                                   <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <div class="popup-rating pull-left text-right">
-                                    <span>3.5/5</span>
-                                </div>
-                                <a href="#" class="rating-details-websites"> and 12 more websites >
-                                </a>
-                                <div class="movie-details-footer">
-                                     <div class="popup-rating-items clearfix">
-                                              <div class="rating-image pull-left">
-                                                    <img src="images/moviesfyi.png">
-                                                </div>
-                                             <div class="our-rating-image-star pull-left">
-                                               <span class="our-rating-full"></span>
-                                                <span class="our-rating-full"></span>
-                                                <span class="our-rating-full"></span>
-                                                <span class="our-rating-empty"></span>
-                                                <span class="our-rating-empty"></span>
-                                            </div>
-                                            <div class="popup-rating pull-left text-right">
-                                                <span>3.5/5</span>
-                                          </div>
-                                          <span class="popup-rating-text pull-right">(overall rating)</span>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                         <div class="t-m-r-i cmg-wk-cmg">
-                             <div class="trend-calendar cmg-mv-cal">
-                                <span class="month">nov</span>
-                                <span class="date">24</span>
-                            </div>
-                            <span class="trend-movie-title">babu bangaram</span>
-                            <span class="trend-movie-lang">telugu</span>
-                            <div class="trend-movie-star bcg-yellow cmg-pop">
-                                <span class="glyphicon glyphicon-heart"></span>
-                               <span class="rate-text">85%</span>
-
-                            </div>
-                        </div>
-                         <div class="t-m-r-i cmg-wk-cmg">
-                             <div class="trend-calendar cmg-mv-cal">
-                                <span class="month">dec</span>
-                                <span class="date">24</span>
-                            </div>
-                            <span class="trend-movie-title">the soldier 2</span>
-                            <span class="trend-movie-lang">english</span>
-                            <div class="trend-movie-star bcg-yellow cmg-pop">
-                                <span class="glyphicon glyphicon-heart"></span>
-                               <span class="rate-text">95%</span>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
+                <div class="popup-rating pull-left text-right">
+                    <span>3.5/5</span>
+              </div>
+              <span class="popup-rating-text pull-right">(overall rating)</span>
         </div>
     </div>
-
-    <div class="mv-lang-tab">
-        <div class="container">
-            <div class="mv-lang-hold">
-                <div class="mv-nav">
-                    <ul class="nav nav-tabs " role="tablist">
-                        <li role="presentation" class="active"><div href="#all_movies" aria-controls="all_movies" role="tab" data-toggle="tab">all-movies</div></li>
-                        <li role="presentation"><div href="#telugu" aria-controls="telugu" role="tab" data-toggle="tab">telugu</div
-                        ></li>
-                        <li role="presentation"><div href="#hindi" aria-controls="hindi" role="tab" data-toggle="tab">hindi</div
-                        ></li>
-                        <li role="presentation"><div href="#english" aria-controls="english" role="tab" data-toggle="tab">english</div
-                        ></li>
-                        <li role="presentation"><div href="#tamil" aria-controls="tamil" role="tab" data-toggle="tab">tamil</div
-                        ></li>
-                        <li role="presentation"><div href="#malayalam" aria-controls="malayalam" role="tab" data-toggle="tab">malayalam</div
-                        ></li>
-                    </ul>
-                </div>
-
- <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="all_movies">
-        <div class="clearfix">
-            <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                            <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-
-            </div>
-           <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                        <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                        <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                        <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                        <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                        <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-            </div>
-           <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                        <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 book-now-img">
-                <div class="book-img-thumb">
-                   <img src="images/img.png"/>
-                    <div class="mv-curve">
-                        <div class="mv-curve-img">
-                            </div>
-                        <div class="mv-rate">
-                            <span>3.5</span>
-                        </div>
-                        <div class="mv-name">
-                            <span>the assassin</span>
-                            <span class="mv-name-rating">A</span>
-
-                        </div>
-                        <div class="mv-lang">
-                            <span>hindi</span>
-                        </div>
-                        <div class="mv-det">
-                            <div class="mv-genre">
-                                 <ul class="list-inline">
-                                    <li>sei-fi</li>
-                                    <li>drama</li>
-                                    <li>action</li>
-                                </ul>
-                            </div>
-                            <div class="mv-act-thumb">
-                                <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                                 <span class="mv-artists">
-                                    <span class="mv-artist-img">
-                                        <img src="images/img1.jpg" alt="">
-                                    </span>
-                                    <span class="mv-artist-name">magan fox</span>
-                                </span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="book-nw-btn">
-                       book now
-                       <span class="glyphicon glyphicon-play play-btn">
-                       </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="telugu">
-    <div class="row">
-            <div class="col-md-3 book-now-img">
-
-            </div>
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="hindi">
-    <div class="row">
-            <div class="col-md-3 book-now-img">
-
-            </div>
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="english">
-    <div class="row">
-            <div class="col-md-3 book-now-img">
-
-            </div>
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="tamil">
-    <div class="row">
-            <div class="col-md-3 book-now-img">
-
-            </div>
-        </div>
-    </div>
-    <div role="tabpanel" class="tab-pane" id="malayalam">
-    <div class="row">
-            <div class="col-md-3 book-now-img">
-
-            </div>
-        </div>
-    </div>
-  </div>
-  </div>
-  <div class="load-btn text-center">
-      <span> + load more</span>
-  </div>
-
-
     </div>
 </div>
-<div class="mv-news-updates">
+
+<div class="rating-details hidden" id="topboxpopup-content">
+    <div class="rating-details-header text-left"><h2>Rating Details</h2></div>
+    <div class="rating-details-b">
+     <div class="popup-rating-items clearfix" ng-repeat="ns in movs.TopBoxOffice[tmindex]['movies_with_sites']">
+        <div class="rating-image pull-left"><%ns.site_name%> <!--<img src="images/bookmyshow.png">--> </div>
+        <div class="rating-image-star pull-left" >
+          <span ng-repeat="n in srating(0,ns.site_rating)">
+              <span class="<%n%>"></span></span>
+        </div>
+        <div class="popup-rating pull-left text-right">
+            <span><%ns.site_rating%>/5</span>
+        </div>
+    </div>
+    <div class="movie-details-footer">
+         <div class="popup-rating-items clearfix">
+                  <div class="rating-image pull-left">
+                        <img src="images/moviesfyi.png">
+                    </div>
+                 <div class="our-rating-image-star pull-left">
+                   <span class="our-rating-full"></span>
+                    <span class="our-rating-full"></span>
+                    <span class="our-rating-full"></span>
+                    <span class="our-rating-empty"></span>
+                    <span class="our-rating-empty"></span>
+                </div>
+                <div class="popup-rating pull-left text-right">
+                    <span>3.5/5</span>
+              </div>
+              <span class="popup-rating-text pull-right">(overall rating)</span>
+        </div>
+    </div>
+    </div>
+</div>
+                           <div class="t-m-r-i cmg-wk-cmg">
+                               <div class="trend-calendar cmg-mv-cal">
+                                  <span class="month">nov</span>
+                                  <span class="date">24</span>
+                              </div>
+                              <span class="trend-movie-title">babu bangaram</span>
+                              <span class="trend-movie-lang">telugu</span>
+                              <div class="trend-movie-star bcg-yellow cmg-pop">
+                                  <span class="glyphicon glyphicon-heart"></span>
+                                 <span class="rate-text">85%</span>
+
+                              </div>
+                          </div>
+                           <div class="t-m-r-i cmg-wk-cmg">
+                               <div class="trend-calendar cmg-mv-cal">
+                                  <span class="month">dec</span>
+                                  <span class="date">24</span>
+                              </div>
+                              <span class="trend-movie-title">the soldier 2</span>
+                              <span class="trend-movie-lang">english</span>
+                              <div class="trend-movie-star bcg-yellow cmg-pop">
+                                  <span class="glyphicon glyphicon-heart"></span>
+                                 <span class="rate-text">95%</span>
+
+                              </div>
+                          </div>
+
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="mv-lang-tab">
+          <div class="container">
+              <div class="mv-lang-hold">
+                  <div class="mv-nav">
+                      <ul class="nav nav-tabs " role="tablist">
+                          <li role="presentation" class="active"><div href="#all_movies" aria-controls="all_movies" role="tab" data-toggle="tab">all-movies</div></li>
+                          <li role="presentation"><div href="#telugu" aria-controls="telugu" role="tab" data-toggle="tab">telugu</div
+                          ></li>
+                          <li role="presentation"><div href="#hindi" aria-controls="hindi" role="tab" data-toggle="tab">hindi</div
+                          ></li>
+                          <li role="presentation"><div href="#english" aria-controls="english" role="tab" data-toggle="tab">english</div
+                          ></li>
+                          <li role="presentation"><div href="#tamil" aria-controls="tamil" role="tab" data-toggle="tab">tamil</div
+                          ></li>
+                          <li role="presentation"><div href="#malayalam" aria-controls="malayalam" role="tab" data-toggle="tab">malayalam</div
+                          ></li>
+                      </ul>
+                  </div>
+
+   <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="all_movies">
+          <div class="clearfix">
+              <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                              <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+
+              </div>
+             <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                          <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                          <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                          <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                          <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                          <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+              </div>
+             <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                          <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-3 book-now-img">
+                  <div class="book-img-thumb">
+                     <img src="images/img.png"/>
+                      <div class="mv-curve">
+                          <div class="mv-curve-img">
+                              </div>
+                          <div class="mv-rate">
+                              <span>3.5</span>
+                          </div>
+                          <div class="mv-name">
+                              <span>the assassin</span>
+                              <span class="mv-name-rating">A</span>
+
+                          </div>
+                          <div class="mv-lang">
+                              <span>hindi</span>
+                          </div>
+                          <div class="mv-det">
+                              <div class="mv-genre">
+                                   <ul class="list-inline">
+                                      <li>sei-fi</li>
+                                      <li>drama</li>
+                                      <li>action</li>
+                                  </ul>
+                              </div>
+                              <div class="mv-act-thumb">
+                                  <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                                   <span class="mv-artists">
+                                      <span class="mv-artist-img">
+                                          <img src="images/img1.jpg" alt="">
+                                      </span>
+                                      <span class="mv-artist-name">magan fox</span>
+                                  </span>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="book-nw-btn">
+                         book now
+                         <span class="glyphicon glyphicon-play play-btn">
+                         </span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="telugu">
+      <div class="row">
+              <div class="col-md-3 book-now-img">
+
+              </div>
+          </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="hindi">
+      <div class="row">
+              <div class="col-md-3 book-now-img">
+
+              </div>
+          </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="english">
+      <div class="row">
+              <div class="col-md-3 book-now-img">
+
+              </div>
+          </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="tamil">
+      <div class="row">
+              <div class="col-md-3 book-now-img">
+
+              </div>
+          </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="malayalam">
+      <div class="row">
+              <div class="col-md-3 book-now-img">
+
+              </div>
+          </div>
+      </div>
+    </div>
+    </div>
+    <div class="load-btn text-center">
+        <span> + load more</span>
+    </div>
+
+
+      </div>
+  </div>
+  <div class="mv-news-updates">
         <div class="container">
             <div class="row">
                 <div class="mv-news-updates-h">
@@ -1095,7 +948,7 @@
              <div class="load-btn text-center">
       <span> + load more</span>
   </div>
-    </div>
+</div>
     <div class="mv-gallery">
     <div class="container">
         <div class="row">
@@ -1103,10 +956,51 @@
                 latest gallery
                     <a href="#" class="mv-gallery-view pull-right">view all</a>
             </div>
+            <div class="mv-gallery-b">
+                <div class="grid">
+                    <div class="grid-item ">
+                        <img src="images/eminem.png" alt="">
+                            <div class="mv-gallery-img-content left-mandy">
+                                <h3>eminem</h3>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </div>
+                    </div>
 
+                    <div class="grid-item">
+                          <img src="images/taylor.png" alt="">
+                            <div class="mv-gallery-img-content left-yellow">
+                                <h3>eminem</h3>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </div>
+                    </div>
+                    <div class="grid-item">
+                        <img src="images/unk.png" alt="">
+                            <div class="mv-gallery-img-content left-green">
+                                <h3>eminem</h3>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </div>
+                    </div>
+                    <div class="grid-item">
+                          <img src="images/taylorco.png" alt="">
+                            <div class="mv-gallery-img-content left-green">
+                                <h3>eminem</h3>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </div>
+                    </div>
+                    <div class="grid-item ">
+                          <img src="images/grey.png" alt="">
+                            <div class="mv-gallery-img-content left-yellow">
+                                <h3>eminem</h3>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="load-btn text-center">
       <span> + load more</span>
   </div>
+</div>
+</div>
 </div>

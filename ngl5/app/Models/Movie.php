@@ -9,11 +9,6 @@ class Movie extends Model
 {
 	protected $table = "movies";
 
-
-    public function MoviesWithSites()
-    {
-    	return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site');
-    }
     public function NowShowing()
     {
 			$movs = DB::table('movies')
@@ -55,6 +50,10 @@ class Movie extends Model
     	return $this->select('name','genre','rating')->where('status','4')->take(3)->get();
     }
 
+    public function MoviesWithSites()
+    {
+        return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id');
+    }
     public function getArtistIad()
     {
 
@@ -63,12 +62,7 @@ class Movie extends Model
     }
     public function MoviesWithArtist()
     {
-
     }
-    // public function MoviesWithSites()
-    // {
-    //     return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id');
-    // }
 
 
     public function Gmovieandsite($status)
@@ -80,6 +74,7 @@ class Movie extends Model
 					 ->get();
         return $msites;
     }
+
 		public function movieslist(){
 			$movies = DB::table('movies')->limit(8)->offset(0)->get();
 			return $movies;
@@ -92,14 +87,6 @@ class Movie extends Model
 				//$msa = DB::table('movies')->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists','artists.id','in','movies.artist_id')->get();
 
 		}
-    public function scopeAttach($query)
-    {
-        return $query->whereRaw('FIND_IN_SET(artists.id,movies.artist_id)');
-    }
-    public function GmovieandSiteandArtist()
-    {
-       return $msa = $this->hasMany('\App\Models\Artist','id');
-       // $msa = DB::table('movies')->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists')->;
-    }
+
 
 }

@@ -16,7 +16,7 @@ class HomeController extends Controller
       return view('app')->with('movies',$movies);
 
     }
-    public function movdata(){
+    public function Sliderdata(){
       $movies = DB::table('movies')
                     ->where('status',1)
                     ->orderBy('id','DESC')->take(8)->get();
@@ -42,7 +42,7 @@ class HomeController extends Controller
       }
       $movies_data2['data'] = $movies_data;
       $movies_data2['images'] = $movie_images;
-      return json_encode($movies_data2);
+      return $movies_data2;
     }
     public function movies(){
     return view('app');
@@ -53,14 +53,26 @@ class HomeController extends Controller
     public function GetInfo(Movie $moviesSites)
     {
        $data = [] ;
-       $data['NowShowingMovies'] = $this->NowShowingMovies($moviesSites);
-       $data['TopBoxOffice'] = $this->TopBoxOffice($moviesSites);
+       $data['slider'] = $this->Sliderdata($moviesSites);
+       $data['NowShowingMovies'] = $this->NowShow($moviesSites);
+       $data['TopBoxOffice'] = $this->TopBox($moviesSites);
        $data['CommingThisWeek'] = $this->CommingThisWeek($moviesSites);
-       $data['CommingSoon'] = $this->CommingSoon($moviesSites);
-       $data['allmovies'] = $this->allmovies($moviesSites);
+       //$data['CommingSoon'] = $this->CommingSoon($moviesSites);
+       //$data['allmovies'] = $this->allmovies($moviesSites);
        return $data;
     }
-
+    public function NowShow()
+    {
+        $nshows = Movie::where('status','1')->take(7)->get();
+        $movies = $nshows->pluck('MoviesWithSites');
+        return $nshows;
+    }
+    public function TopBox()
+    {
+        $nshows = Movie::where('status','2')->take(7)->get();
+        $movies = $nshows->pluck('MoviesWithSites');
+        return $nshows;
+    }
     public function NowShowingMovies(Movie $moviesSites)
     {
       $status = 1;
