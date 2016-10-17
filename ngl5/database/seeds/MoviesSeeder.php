@@ -26,4 +26,5 @@ class MoviesSeeder extends Seeder
           ]);
         };
     }
+    
 }

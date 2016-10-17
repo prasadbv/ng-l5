@@ -1,4 +1,8 @@
-app.controller('indexController', function ($scope,$http) {
+// app.controller('indexController', function ($scope,$http) {
+
+// })
+var sholder ='';
+app.controller('indexController', function ($scope,$window,$http) {
    /**
    *
    * movie controller jquery start here
@@ -9,6 +13,7 @@ app.controller('indexController', function ($scope,$http) {
         itemSelector: '.grid-item'
         // columnWidth: 80
       };
+       $('.grid').masonry( masonryOptions );
     if ($.fn.reflect) {
          $('#slider-coverflow .cover').reflect();  
       }
@@ -41,7 +46,7 @@ app.controller('indexController', function ($scope,$http) {
               }
             });
 
-            $('.grid').masonry( masonryOptions );
+           
             $(".shw-pop").popover({
                     html : true,
                     trigger:'click',
@@ -106,17 +111,15 @@ app.controller('indexController', function ($scope,$http) {
                         }
                     }, 100);
             });
+
             /**
              *
              * movie controller jquery end here
              *
              */
-
-var sholder ='';
-app.controller('indexController', function ($scope,$window,$http) {
   $scope.movs = [];
     $scope.init = function(mmid){
-      $http.post('http://localhost/ng-l5/ngl5/public/mov').success(function(data,status,headers,config){
+      $http.post('http://ng-l5.app/mov').success(function(data,status,headers,config){
         var arr = Object.keys(data['data'])
         $scope.mmid = arr[0];
         $scope.movs = data;

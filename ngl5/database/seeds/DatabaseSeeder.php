@@ -18,5 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call('MoviesPivotTable');
         DB::table('artists')->truncate();
         $this->call('ArtistSeeder');
+        DB::table('artist_movie')->truncate();
+        $this->call('ArtistRelation');
+        DB::table('posts')->truncate();
+        $this->call('PostTableSeeder');
     }
 }

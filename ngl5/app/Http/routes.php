@@ -33,7 +33,7 @@ Route::get('/test',[
 	'as'   => 'test'
 ]);
 Route::get('/test1',[
-	'uses' => 'TestController@MoviesAndSites',
+	'uses' => 'TestController@MoviesAndArtists',
 	'as'   => 'test1'
 ]);
 // Route::get('/test',[

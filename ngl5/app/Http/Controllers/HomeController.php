@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index(){
 
-    	$movies = new Movie;
+      $movies = new Movie;
       return view('app')->with('movies',$movies);
 
     }
@@ -57,7 +57,6 @@ class HomeController extends Controller
        $data['TopBoxOffice'] = $this->TopBoxOffice($moviesSites);
        $data['CommingThisWeek'] = $this->CommingThisWeek($moviesSites);
        $data['CommingSoon'] = $this->CommingSoon($moviesSites);
-       $data['allmovies'] = $this->allmovies($moviesSites);
        return $data;
     }
 
@@ -80,7 +79,9 @@ class HomeController extends Controller
             $movies[$value->movie_id]['sites'][] = $sites;
 
         };
+
         return $movies;
+
     }
     public function TopBoxOffice(Movie $moviesSites)
     {
@@ -99,6 +100,7 @@ class HomeController extends Controller
             $movies[$value->movie_id]['certificate'] =$value->certificate;
             $movies[$value->movie_id]['status'] =$value->status;
             $movies[$value->movie_id]['sites'][] = $sites;
+
         };
         return $movies;
     }
@@ -119,6 +121,7 @@ class HomeController extends Controller
             $movies[$value->movie_id]['certificate'] =$value->certificate;
             $movies[$value->movie_id]['status'] =$value->status;
             $movies[$value->movie_id]['sites'][] = $sites;
+
         };
         return $movies;
     }
@@ -139,18 +142,9 @@ class HomeController extends Controller
             $movies[$value->movie_id]['certificate'] =$value->certificate;
             $movies[$value->movie_id]['status'] =$value->status;
             $movies[$value->movie_id]['sites'][] = $sites;
+
         };
         return $movies;
     }
-    public function allmovies(Movie $moviesSites){
-      $movies =  $moviesSites->movieslist();
-      $mov_artists = [];
-      foreach($movies as $k=>$v){
-        $arids = explode(',',$v->artist_id);
-        $artists =  $moviesSites->artistlist($arids);
-        $mov_artists[] = $v;
-        $mov_artists[]['artists'] = $artists;
-      }
-      return $mov_artists;
-    }
+     
 }

@@ -26,6 +26,9 @@
     <div ui-view></div>
   <div ng-include="'templates/footer.html'"></div>
 
+
+<script src="{{URL::asset('app/routes.js')}}"></script>
+<script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
 <script>
 //$( window ).load(function() {
 setTimeout(function(){
@@ -34,25 +37,25 @@ setTimeout(function(){
           $('#slider-coverflow .cover').reflect();
         }
         $('#slider-coverflow').coverflow({
-          index:			4,
-          density:		2,
-          innerOffset:	50,
-          innerScale:		.7,
+          index:      4,
+          density:    2,
+          innerOffset:  50,
+          innerScale:   .7,
           outerAngle: 75,
-          animateStep:	function(event, cover, offset, isVisible, isMiddle, sin, cos) {
+          animateStep:  function(event, cover, offset, isVisible, isMiddle, sin, cos) {
             if (isVisible) {
               if (isMiddle) {
                 $(cover).css({
-                  'filter':			'none',
-                  '-webkit-filter':	'none'
+                  'filter':     'none',
+                  '-webkit-filter': 'none'
                 });
               } else {
-                var brightness	= 1 + Math.abs(sin),
-                  contrast	= 1 - Math.abs(sin),
-                  filter		= 'contrast('+contrast+') brightness('+brightness+')';
+                var brightness  = 1 + Math.abs(sin),
+                  contrast  = 1 - Math.abs(sin),
+                  filter    = 'contrast('+contrast+') brightness('+brightness+')';
                 $(cover).css({
-                  'filter':			filter,
-                  '-webkit-filter':	filter
+                  'filter':     filter,
+                  '-webkit-filter': filter
                 });
               }
             }
@@ -68,7 +71,5 @@ setTimeout(function(){
   //});
 
 </script>
-<script src="{{URL::asset('app/routes.js')}}"></script>
-<script src="{{URL::asset('app/controllers/homectrl.js')}}" charset="utf-8"></script>
 </body>
 </html>

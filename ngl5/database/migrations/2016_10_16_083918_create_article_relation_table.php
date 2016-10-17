@@ -3,27 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTable extends Migration
+class CreateArticleRelationTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
-
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('artist_movie',function(Blueprint $table){
             $table->increments('id');
-            $table->string('title');
-            $table->text('body');
-            $table->string('post_img');
-            $table->string('slug');
-            $table->integer('user_id');
-            $table->integer('comment_id');
+            $table->integer('artist_id');
+            $table->integer('movie_id');
             $table->timestamps();
-        });
+          });
     }
 
     /**
@@ -33,6 +27,6 @@ class CreatePostTable extends Migration
      */
     public function down()
     {
-       Schema::drop('posts');
+        Schema::Drop('artist_movie');
     }
 }

@@ -10,10 +10,6 @@ class Movie extends Model
 	protected $table = "movies";
 
 
-    public function MoviesWithSites()
-    {
-    	return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site');
-    }
     public function NowShowing()
     {
 			$movs = DB::table('movies')
@@ -59,14 +55,9 @@ class Movie extends Model
     {
         return $this->belongsToMany('\App\Models\MovieSite','movie_movie_site','movie_id','site_id');
     }
-    public function getArtistIad()
+    public function MoviesWithArtists()
     {
-
-        return $this->select('artist_id');
-
-    }
-    public function MoviesWithArtist()
-    {
+        return $this->belongsToMany('\App\Models\Artist','artist_movie','movie_id','artist_id');
     }
 
 
@@ -90,7 +81,6 @@ class Movie extends Model
 											->whereIn('id',$arids)->get();
 				return $artists;
 				//$msa = DB::table('movies')->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists','artists.id','in','movies.artist_id')->get();
-
 		}
 
 

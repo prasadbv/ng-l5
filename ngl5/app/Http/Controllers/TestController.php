@@ -5,8 +5,10 @@ use DB;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\MovieSite;
+use App\Models\Artist;
 use App\Models\User;
 use App\Models\Article;
+use App\Models\Post;
 use App\Http\Requests;
 use Response;
 
@@ -21,15 +23,6 @@ class TestController extends Controller
         return $movies;
     }
 
-    public function GmovieandSiteandArtist()
-    {
-
-        $msa = DB::table('movies')->join('movie_sites','movies.id','=','movie_sites.movie_id')->join('artists',function($join){
-            $join->where(DB::raw('FIND_IN_SET(artists.id , movies.artist_id)'));
-        })->get();
-        var_dump($msa);
-
-    }
     public function getArticles()
     {
         $articles = Article::all();
@@ -57,6 +50,7 @@ class TestController extends Controller
         $msites = $movies->pluck('MoviesWithSites');
         echo $movies;
     }
+     
     public function NowShow()
     {
         /**
@@ -70,4 +64,34 @@ class TestController extends Controller
         echo $nshows;
     }
 
+    public function ArtistInfo()
+    {
+        /**
+         *
+         * working need to move home controller
+         *
+         */
+        
+        $artists = Artist::select('id','artist_name','artist_pic','artist_description')->take(10)->get();
+        echo $artists;
+    }
+    public function Posts()
+    {
+        /**
+         *
+         * working need to movie home controller
+         *
+         */
+        
+        $posts = Post::all()->take(6);
+        echo $posts;
+    }
+    public function MoviesAndArtists()
+    {
+        $a = Movie::all();
+        $b = $a->pluck('MoviesWithArtists');
+        echo $b;
+    }
+   
+   
 }
