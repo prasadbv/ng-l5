@@ -1,6 +1,7 @@
 <?php
 use App\Models\MovieSites;
-Route::resource('/mov','HomeController@movdata');
+Route::resource('/mov','HomeController@Sliderdata');
+Route::resource('/info','HomeController@Getinfo');
 Route::get('/',[
   'uses'=> 'HomeController@index',
   'as'=> 'home'
@@ -29,7 +30,7 @@ Route::get('/todoapp',[
 ]);
 
 Route::get('/test',[
-	'uses' => 'HomeController@GetInfo',
+	'uses' => 'TestController@NowShow',
 	'as'   => 'test'
 ]);
 Route::get('/test1',[

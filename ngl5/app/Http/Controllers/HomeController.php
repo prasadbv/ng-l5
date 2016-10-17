@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use DB;
 use App\Http\Controllers\Controller;
 use App\Models\Movie;
+use App\Models\Artist;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\MovieSite;
 use App\Http\Requests;
@@ -16,7 +18,7 @@ class HomeController extends Controller
       return view('app')->with('movies',$movies);
 
     }
-    public function movdata(){
+    public function Sliderdata(){
       $movies = DB::table('movies')
                     ->where('status',1)
                     ->orderBy('id','DESC')->take(8)->get();
@@ -42,7 +44,7 @@ class HomeController extends Controller
       }
       $movies_data2['data'] = $movies_data;
       $movies_data2['images'] = $movie_images;
-      return json_encode($movies_data2);
+      return $movies_data2;
     }
     public function movies(){
     return view('app');
@@ -50,59 +52,42 @@ class HomeController extends Controller
     public function gallery(){
       return view('app');
     }
-    public function GetInfo(Movie $moviesSites)
+    public function GetInfo(Movie $moviesSites,Request $request)
     {
        $data = [] ;
-       $data['NowShowingMovies'] = $this->NowShowingMovies($moviesSites);
-       $data['TopBoxOffice'] = $this->TopBoxOffice($moviesSites);
+       $data['slider'] = $this->Sliderdata($moviesSites);
+       $data['NowShowingMovies'] = $this->NowShow($moviesSites);
+       $data['TopBoxOffice'] = $this->TopBox($moviesSites);
        $data['CommingThisWeek'] = $this->CommingThisWeek($moviesSites);
        $data['CommingSoon'] = $this->CommingSoon($moviesSites);
+       $data['ArtistInfo'] = $this->ArtistInfo();
+       $data['Posts'] = $this->Posts();
+       //$data['CommingSoon'] = $this->CommingSoon($moviesSites);
+       //$data['allmovies'] = $this->allmovies($moviesSites);
        return $data;
     }
-
-    public function NowShowingMovies(Movie $moviesSites)
+    public function NowShow()
     {
-      $status = 1;
-      $nowms =  $moviesSites->Gmovieandsite($status);
-      $movies = [];
-        foreach ($nowms as $value) {
-            $sites = [];
-            $sites['site_name'] = $value->site_name;
-            $sites['site_logo'] = $value->site_logo;
-            $sites['site_rating'] = $value->site_rating;
-            $movies[$value->movie_id]['movie_name'] = $value->name;
-            $movies[$value->movie_id]['language'] = $value->language;
-            $movies[$value->movie_id]['genre'] = $value->genre;
-            $movies[$value->movie_id]['image'] = $value->image;
-            $movies[$value->movie_id]['certificate'] =$value->certificate;
-            $movies[$value->movie_id]['status'] =$value->status;
-            $movies[$value->movie_id]['sites'][] = $sites;
-
-        };
-
-        return $movies;
-
+        $nshows = Movie::where('status','1')->take(7)->get();
+        $movies = $nshows->pluck('MoviesWithSites');
+        return $nshows;
     }
-    public function TopBoxOffice(Movie $moviesSites)
+    public function TopBox()
     {
-      $status = 2;
-      $nowms =  $moviesSites->Gmovieandsite($status);
-     $movies = [];
-        foreach ($nowms as $value) {
-            $sites = [];
-            $sites['site_name'] = $value->site_name;
-            $sites['site_logo'] = $value->site_logo;
-            $sites['site_rating'] = $value->site_rating;
-            $movies[$value->movie_id]['movie_name'] = $value->name;
-            $movies[$value->movie_id]['language'] = $value->language;
-            $movies[$value->movie_id]['genre'] = $value->genre;
-            $movies[$value->movie_id]['image'] = $value->image;
-            $movies[$value->movie_id]['certificate'] =$value->certificate;
-            $movies[$value->movie_id]['status'] =$value->status;
-            $movies[$value->movie_id]['sites'][] = $sites;
-
-        };
-        return $movies;
+        $nshows = Movie::where('status','2')->take(7)->get();
+        $movies = $nshows->pluck('MoviesWithSites');
+        return $nshows;
+    }
+    public function ArtistInfo()
+    {
+        $artists = Artist::select('id','artist_name','artist_pic','artist_description')->take(10)->get();
+        return $artists;
+    }
+    public function Posts()
+    {
+        
+        $posts = Post::orderBy('id','desc')->take(6)->get();
+        return $posts;
     }
     public function CommingThisWeek(Movie $moviesSites)
     {
@@ -147,4 +132,5 @@ class HomeController extends Controller
         return $movies;
     }
      
+    
 }

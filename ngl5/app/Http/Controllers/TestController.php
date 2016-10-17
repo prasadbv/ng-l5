@@ -45,7 +45,7 @@ class TestController extends Controller
          * working need to move home controller
          *
          */
-        
+
         $movies = Movie::all();
         $msites = $movies->pluck('MoviesWithSites');
         echo $movies;
@@ -53,39 +53,13 @@ class TestController extends Controller
      
     public function NowShow()
     {
-        /**
-         *
-         * working need to move home controller
-         *
-         */
-        
         $nshows = Movie::where('status','1')->take(7)->get();
         $movies = $nshows->pluck('MoviesWithSites');
         echo $nshows;
     }
 
-    public function ArtistInfo()
-    {
-        /**
-         *
-         * working need to move home controller
-         *
-         */
-        
-        $artists = Artist::select('id','artist_name','artist_pic','artist_description')->take(10)->get();
-        echo $artists;
-    }
-    public function Posts()
-    {
-        /**
-         *
-         * working need to movie home controller
-         *
-         */
-        
-        $posts = Post::all()->take(6);
-        echo $posts;
-    }
+    
+
     public function MoviesAndArtists()
     {
         $a = Movie::all();

@@ -186,6 +186,9 @@ font-size: 14px;
 font-size:10px;
 text-transform:capitalize;	
 }
+.langs span{
+    margin-right: 5px;
+}
 .rating{
 	border: 1px solid #fff;
     border-radius: 50%;
@@ -297,6 +300,7 @@ span.trend-movie-lang {
     padding: 0px 5px;
     text-transform: capitalize;
     font-size: 12px;
+    margin-right: 5px;
 }
 .trend-movie-star {
     top: 12px;

@@ -1,3 +1,4 @@
+var scopeHolder;
 var app = angular.module('main-App',['ui.router','angularCSS'],function($interpolateProvider){
   $interpolateProvider.startSymbol('<%');
   $interpolateProvider.endSymbol('%>');
@@ -16,7 +17,7 @@ app.config(function($urlRouterProvider,$stateProvider,$locationProvider) {
     }).
     state('gallery',{
       url:'/gallery',
-      css:'css/single-mvpage.css',
+      css: 'css/single-mvpage.css',
       templateUrl: 'templates/gallery.html'
     });
     $locationProvider.html5Mode(true);
